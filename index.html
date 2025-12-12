@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UniverCity | The Wealthy Loser & Healing Program</title>
-  <meta name="description" content="Discover The Wealthy Loser book and UniverCity healing program. Purchase directly, donate, or redirect to Amazon and Indigo. Secure payments for Canada with Stripe, PayPal, and Interac." />
-  <meta name="keywords" content="The Wealthy Loser, UniverCity, recovery book, healing program, donations Canada, Stripe, PayPal, Interac e-Transfer, Amazon Canada" />
-  <meta property="og:title" content="The Wealthy Loser | UniverCity" />
-  <meta property="og:description" content="A recovery story with a companion healing program. Purchase, donate, or join the UniverCity community." />
+  <title>TheWealthyLoser | The Wealthy Loser & Healing Program</title>
+  <meta name="description"
+    content="Discover The Wealthy Loser book and TheWealthyLoser healing program. Purchase directly, donate, or redirect to Amazon and Indigo. Secure payments for Canada with Stripe, PayPal, and Interac." />
+  <meta name="keywords"
+    content="The Wealthy Loser, TheWealthyLoser, recovery book, healing program, donations Canada, Stripe, PayPal, Interac e-Transfer, Amazon Canada" />
+  <meta property="og:title" content="The Wealthy Loser | TheWealthyLoser" />
+  <meta property="og:description"
+    content="A recovery story with a companion healing program. Purchase, donate, or join the TheWealthyLoser community." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://example.com" />
   <meta property="og:image" content="https://twl.getwebsitetoday.com/wp-content/uploads/2025/10/book-4.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --primary: #a830f0;
-      --primary-strong: #7a1dc2;
-      --secondary: #fcb8f3;
+      --primary: #4caf50;
+      --primary-strong: #388e3c;
+      --secondary: #c8e6c9;
       --text: #0f172a;
-      --muted: #f8f3ff;
+      --muted: #f1f8f4;
       --card: #ffffff;
     }
 
-    * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -40,7 +53,7 @@
       z-index: 10;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid #f0e9ff;
+      border-bottom: 1px solid #d7f2dc;
     }
 
     .nav {
@@ -66,12 +79,12 @@
       width: 44px;
       height: 44px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #fc5c7d, #6a82fb);
+      background: linear-gradient(135deg, #81c784, #2e7d32);
       display: grid;
       place-items: center;
       color: #fff;
       font-weight: 800;
-      box-shadow: 0 10px 30px rgba(168, 48, 240, 0.28);
+      box-shadow: 0 10px 30px rgba(76, 175, 80, 0.28);
     }
 
     nav a {
@@ -83,7 +96,10 @@
       transition: color .2s, background .2s;
     }
 
-    nav a:hover { color: var(--primary); background: #f5edff; }
+    nav a:hover {
+      color: var(--primary);
+      background: #e8f5e9;
+    }
 
     .btn {
       display: inline-flex;
@@ -99,9 +115,22 @@
       transition: transform .2s, box-shadow .2s;
     }
 
-    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 12px 25px rgba(168, 48, 240, 0.28); }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 16px 32px rgba(168, 48, 240, 0.35); }
-    .btn-ghost { background: #fff; color: var(--primary-strong); border: 1px solid #eddcff; }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 12px 25px rgba(76, 175, 80, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(76, 175, 80, 0.35);
+    }
+
+    .btn-ghost {
+      background: #fff;
+      color: var(--primary-strong);
+      border: 1px solid #cfe8d1;
+    }
 
     .brand-pill {
       display: inline-flex;
@@ -114,11 +143,15 @@
       color: #111827;
       font-weight: 700;
       text-decoration: none;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
       transition: transform .2s, box-shadow .2s, border-color .2s;
     }
 
-    .brand-pill:hover { transform: translateY(-1px); box-shadow: 0 14px 26px rgba(0,0,0,0.08); border-color: #ddd6fe; }
+    .brand-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.08);
+      border-color: #b7e0bb;
+    }
 
     .brand-icon {
       width: 24px;
@@ -130,23 +163,38 @@
       font-weight: 800;
       color: #fff;
       font-size: 13px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
       flex-shrink: 0;
     }
 
-    .amazon { background: linear-gradient(135deg,#111827,#111827); }
-    .indigo { background: linear-gradient(135deg,#1b3a74,#2e5090); }
-    .google { background: linear-gradient(135deg,#ea4335,#fbbc05); color:#fff; }
-    .apple { background: linear-gradient(135deg,#0f172a,#1f2937); }
-    .direct { background: linear-gradient(135deg,#7a1dc2,#a830f0); }
+    .amazon {
+      background: linear-gradient(135deg, #111827, #111827);
+    }
+
+    .indigo {
+      background: linear-gradient(135deg, #1b3a74, #2e5090);
+    }
+
+    .google {
+      background: linear-gradient(135deg, #ea4335, #fbbc05);
+      color: #fff;
+    }
+
+    .apple {
+      background: linear-gradient(135deg, #0f172a, #1f2937);
+    }
+
+    .direct {
+      background: linear-gradient(135deg, #388e3c, #4caf50);
+    }
 
     .hero {
       position: relative;
       isolation: isolate;
       overflow: hidden;
-      background: radial-gradient(circle at 15% 20%, rgba(252, 184, 243, 0.45), transparent 30%),
-                  radial-gradient(circle at 85% 10%, rgba(121, 199, 255, 0.4), transparent 25%),
-                  linear-gradient(135deg, #f6f0ff, #efe2ff);
+      background: radial-gradient(circle at 15% 20%, rgba(129, 199, 132, 0.35), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(102, 187, 106, 0.3), transparent 25%),
+        linear-gradient(135deg, #f0fdf4, #e4f5e7);
       min-height: 80vh;
       display: grid;
       place-items: center;
@@ -156,7 +204,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(#c6b0ff 1px, transparent 0), radial-gradient(#c6b0ff 1px, transparent 0);
+      background-image: radial-gradient(#b7e4c7 1px, transparent 0), radial-gradient(#b7e4c7 1px, transparent 0);
       background-size: 40px 40px;
       background-position: 0 0, 20px 20px;
       opacity: 0.25;
@@ -174,56 +222,195 @@
       align-items: center;
     }
 
-    .headline { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4vw, 54px); margin: 10px 0 12px; color: var(--text); }
-    .subhead { font-size: 17px; color: #433352; max-width: 620px; }
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 4vw, 54px);
+      margin: 10px 0 12px;
+      color: var(--text);
+    }
+
+    .subhead {
+      font-size: 17px;
+      color: #433352;
+      max-width: 620px;
+    }
 
     .card {
       background: var(--card);
       color: #0f172a;
       padding: 24px;
       border-radius: 18px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-      border: 1px solid #f0e9ff;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+      border: 1px solid #d7f2dc;
     }
 
-    .section { padding: 70px 20px; }
-    .section:nth-of-type(even) { background: var(--muted); }
-    .section-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: start; }
-    .section h2 { font-family: 'Playfair Display', serif; margin: 0 0 12px; font-size: 30px; }
-    .section p { margin: 0 0 16px; color: #4b5563; }
+    .section {
+      padding: 70px 20px;
+    }
 
-    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 12px; }
+    .section:nth-of-type(even) {
+      background: var(--muted);
+    }
 
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-    .mini-card { background: #fff; padding: 16px; border-radius: 14px; border: 1px solid #e5e7eb; box-shadow: 0 10px 24px rgba(0,0,0,0.05); }
-    .mini-card h3 { margin: 0 0 8px; font-size: 18px; color: #1f2937; }
-    .mini-card p { margin: 0; color: #6b7280; }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      align-items: start;
+    }
 
-    .bullet-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-    .bullet-list li { display: flex; align-items: flex-start; gap: 10px; color: #4b5563; }
-    .check { width: 22px; height: 22px; border-radius: 50%; background: #10b981; display: grid; place-items: center; color: #fff; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      margin: 0 0 12px;
+      font-size: 30px;
+    }
 
-    form { display: grid; gap: 12px; }
-    input, textarea { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #e5e7eb; font-family: inherit; }
+    .section p {
+      margin: 0 0 16px;
+      color: #4b5563;
+    }
 
-    .star-rating { display: inline-flex; align-items: center; gap: 6px; flex-direction: row-reverse; }
-    .star-rating input { display: none; }
-    .star-rating label { cursor: pointer; font-size: 22px; color: #d1d5db; transition: color .2s; }
-    .star-rating input:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: #f59e0b; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .mini-card {
+      background: #fff;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .mini-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #1f2937;
+    }
+
+    .mini-card p {
+      margin: 0;
+      color: #6b7280;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #4b5563;
+    }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      font-family: inherit;
+    }
+
+    .star-rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-direction: row-reverse;
+    }
+
+    .star-rating input {
+      display: none;
+    }
+
+    .star-rating label {
+      cursor: pointer;
+      font-size: 22px;
+      color: #d1d5db;
+      transition: color .2s;
+    }
+
+    .star-rating input:checked~label,
+    .star-rating label:hover,
+    .star-rating label:hover~label {
+      color: #f59e0b;
+    }
 
     footer {
       background: #0b1024;
       color: #dfe4ff;
       padding: 32px 20px 40px;
     }
-    footer .inner { max-width: 1100px; margin: 0 auto; display: grid; gap: 16px; }
-    footer a { color: #c7d2fe; text-decoration: none; }
+
+    footer .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    footer a {
+      color: #c7d2fe;
+      text-decoration: none;
+    }
 
     @media (max-width: 720px) {
-      .nav { flex-wrap: wrap; }
-      nav { width: 100%; display: flex; gap: 8px; flex-wrap: wrap; }
-      nav a { padding: 10px 10px; }
-      .hero-inner { padding-top: 60px; }
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      nav {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        padding: 10px 10px;
+      }
+
+      .hero-inner {
+        padding-top: 60px;
+      }
     }
   </style>
   <script type="application/ld+json">
@@ -231,8 +418,8 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "The Wealthy Loser by Joey Ter-Mitchell",
-    "description": "A recovery memoir and model for turning hardship into victory, paired with the UniverCity healing program.",
-    "brand": "UniverCity",
+    "description": "A recovery memoir and model for turning hardship into victory, paired with the TheWealthyLoser healing program.",
+    "brand": "TheWealthyLoser",
     "image": "https://twl.getwebsitetoday.com/wp-content/uploads/2025/10/book-4.png",
     "offers": {
       "@type": "Offer",
@@ -243,12 +430,13 @@
   }
   </script>
 </head>
+
 <body>
   <header>
     <div class="nav">
       <a class="brand" href="#top">
-        <span class="brand-logo">U</span>
-        <span>UniverCity</span>
+        <span class="brand-logo">J</span>
+        <span>TheWealthyLoser</span>
       </a>
       <nav aria-label="Primary">
         <a href="#book">Book</a>
@@ -270,15 +458,15 @@
         <div>
           <div class="eyebrow">Purchase Book</div>
           <h1 class="headline">The Wealthy Loser</h1>
-          <p class="subhead">The Wealthy Loser is evidence that adversity is not the end. It’s a model for turning hardship into victory. If I can do it, you can do it.</p>
+          <p class="subhead">The Wealthy Loser is evidence that adversity is not the end. It’s a model for turning
+            hardship into victory. If I can do it, you can do it.</p>
           <div style="display:flex; gap:12px; flex-wrap: wrap; margin-top: 14px;">
             <a class="btn btn-primary" href="#book">Purchase</a>
             <a class="btn btn-ghost" href="#program">See The Program</a>
           </div>
         </div>
-        <div class="card" style="text-align:center; background:#fff8ff;">
-          <img src="https://twl.getwebsitetoday.com/wp-content/uploads/2025/10/book-4.png" alt="The Wealthy Loser book cover" style="width:100%; max-width:400px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.12);" />
-        </div>
+        <img src="https://twl.getwebsitetoday.com/wp-content/uploads/2025/10/book-4.png"
+          alt="The Wealthy Loser book cover" style="width:100%;  border-radius: 12px;" />
       </div>
     </section>
 
@@ -288,30 +476,49 @@
           <div>
             <div class="eyebrow">Gallery</div>
             <h2>Moments from the journey</h2>
-            <p>Peek inside the UniverCity story—book events, community meetups, and everyday healing moments.</p>
+            <p>Peek inside the TheWealthyLoser story—book events, community meetups, and everyday healing moments.</p>
           </div>
           <a class="btn btn-primary" href="#contact">Share your photo</a>
         </div>
-        <div class="grid-3" style="margin-top:18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+        <div class="grid-3" style="margin-top:18px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
           <div class="card" style="padding:0; overflow:hidden;">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" alt="Cozy reading nook" style="width:100%; display:block;">
+            <img src="https://twl.getwebsitetoday.com/wp-content/uploads/2025/10/program-7-300x275.png"
+              alt="Program workbook cover closeup" style="width:100%; display:block;">
             <div style="padding:14px;">
-              <strong>Book signing circle</strong>
-              <p style="margin:6px 0 0; color:#475569;">Sharing recovery stories with readers.</p>
+              <strong>Workbook moments</strong>
+              <p style="margin:6px 0 0; color:#475569;">Snapshots from the TheWealthyLoser exercises.</p>
             </div>
           </div>
           <div class="card" style="padding:0; overflow:hidden;">
-            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" alt="Community gathering" style="width:100%; display:block;">
+            <img src="https://twl.getwebsitetoday.com/wp-content/uploads/2025/10/program-7-300x275.png"
+              alt="Program workbook spread" style="width:100%; display:block;">
             <div style="padding:14px;">
-              <strong>Community meetups</strong>
-              <p style="margin:6px 0 0; color:#475569;">UniverCity companions connecting in person.</p>
+              <strong>Guided reflections</strong>
+              <p style="margin:6px 0 0; color:#475569;">Prompts that encourage honest journaling.</p>
             </div>
           </div>
           <div class="card" style="padding:0; overflow:hidden;">
-            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Journal and coffee" style="width:100%; display:block;">
+            <img src="https://twl.getwebsitetoday.com/wp-content/uploads/2025/10/program-7-300x275.png"
+              alt="Program highlights collage" style="width:100%; display:block;">
             <div style="padding:14px;">
-              <strong>Daily practices</strong>
-              <p style="margin:6px 0 0; color:#475569;">Morning rituals that ground the program.</p>
+              <strong>Healing practices</strong>
+              <p style="margin:6px 0 0; color:#475569;">Daily rituals to stay grounded and hopeful.</p>
+            </div>
+          </div>
+          <div class="card" style="padding:0; overflow:hidden;">
+            <img src="https://twl.getwebsitetoday.com/wp-content/uploads/2025/10/program-7-300x275.png"
+              alt="Program detail shot" style="width:100%; display:block;">
+            <div style="padding:14px;">
+              <strong>Support prompts</strong>
+              <p style="margin:6px 0 0; color:#475569;">Quick cues to reach out to your companions.</p>
+            </div>
+          </div>
+          <div class="card" style="padding:0; overflow:hidden;">
+            <img src="https://twl.getwebsitetoday.com/wp-content/uploads/2025/09/program-3-1-300x295.jpg"
+              alt="Program participant smiling" style="width:100%; display:block;">
+            <div style="padding:14px;">
+              <strong>Community joy</strong>
+              <p style="margin:6px 0 0; color:#475569;">Celebrating wins together, big and small.</p>
             </div>
           </div>
         </div>
@@ -323,29 +530,37 @@
         <div>
           <div class="eyebrow">About My Book</div>
           <h2>The Wealthy Loser</h2>
-          <p>The Wealthy Loser stems from the adversity I faced over four decades under the oppressive shadow of my stepmother, who sought to diminish me in her eyes. I narrate my journey of overcoming her abuse and reclaiming my identity.</p>
-          <p>At the tender age of 7, this tragically lost everything. The loss of my mother, and my dad’s new wife, my stepmother. My family’s history, once steeped in wealth, love and success, was turned upside down. As Germany and Russia invaded Poland during WWII, I thought the reality of their plight and their family’s generational trauma alongside my personal struggles. I paint a vivid picture of our lives, and the hopelessness within our family forever portrayed in my story.</p>
-          <p>In my book, I show my journey of self-healing in my one that will resonate deeply with anyone who wants to make a difference in their own life and your world. I envision the involvement of esteemed Steven Spielberg in bringing my story to life. Now I am healed and learning to find the full extent of my narratives yet to be revealed. Reading “The Wealthy Loser,” you will uncover layers beyond what meets the eye and witness the resilience and greatness that emerges.</p>
+          <p>The Wealthy Loser stems from the adversity I faced over four decades under the oppressive shadow of my
+            stepmother, who sought to diminish me in her eyes. I narrate my journey of overcoming her abuse and
+            reclaiming my identity.</p>
+          <p>At the tender age of 7, this tragically lost everything. The loss of my mother, and my dad’s new wife, my
+            stepmother. My family’s history, once steeped in wealth, love and success, was turned upside down. As
+            Germany and Russia invaded Poland during WWII, I thought the reality of their plight and their family’s
+            generational trauma alongside my personal struggles. I paint a vivid picture of our lives, and the
+            hopelessness within our family forever portrayed in my story.</p>
+          <p>In my book, I show my journey of self-healing in my one that will resonate deeply with anyone who wants to
+            make a difference in their own life and your world. I envision the involvement of esteemed Steven Spielberg
+            in bringing my story to life. Now I am healed and learning to find the full extent of my narratives yet to
+            be revealed. Reading “The Wealthy Loser,” you will uncover layers beyond what meets the eye and witness the
+            resilience and greatness that emerges.</p>
           <div style="display:flex; gap:10px; flex-wrap: wrap; margin-top:12px;">
-            <a class="brand-pill" href="https://example.com/purchase" target="_blank" rel="noopener">
-              <span class="brand-icon direct" aria-hidden="true">U</span>
-              <span>Buy Direct - $29 CAD</span>
-            </a>
-            <a class="brand-pill" href="https://www.amazon.ca/Wealthy-Loser-Caught-Between-Heaven/dp/1039155685?crid=3RHX0JDBRVDGU&dib=eyJ2IjoiMSJ9.-LAW0rqJ2NXh1MQcJcFO2w.3TreqaZA2DAGSPrfCzTV0xv6AHTYjeQtxJtxSoSxHm4&dib_tag=se&keywords=the+wealthy+loser&qid=1765565613&sprefix=the+wealthy+looser%2Caps%2C151&sr=8-1" target="_blank" rel="noopener">
+            <a class="brand-pill"
+              href="https://www.amazon.ca/Wealthy-Loser-Caught-Between-Heaven/dp/1039155685?crid=3RHX0JDBRVDGU&dib=eyJ2IjoiMSJ9.-LAW0rqJ2NXh1MQcJcFO2w.3TreqaZA2DAGSPrfCzTV0xv6AHTYjeQtxJtxSoSxHm4&dib_tag=se&keywords=the+wealthy+loser&qid=1765565613&sprefix=the+wealthy+looser%2Caps%2C151&sr=8-1"
+              target="_blank" rel="noopener">
               <span class="brand-icon amazon" aria-hidden="true">a</span>
               <span>Amazon Canada</span>
             </a>
-            <a class="brand-pill" href="https://www.indigo.ca/en-ca/the-wealthy-loser-caught-between-heaven-and-hell/9781039155688.html" target="_blank" rel="noopener">
+            <a class="brand-pill"
+              href="https://www.indigo.ca/en-ca/the-wealthy-loser-caught-between-heaven-and-hell/9781039155688.html"
+              target="_blank" rel="noopener">
               <span class="brand-icon indigo" aria-hidden="true">in</span>
               <span>Indigo / Chapters</span>
             </a>
-            <a class="brand-pill" href="https://www.google.ca/books/edition/The_Wealthy_Loser/cBPIEAAAQBAJ?hl=en&gbpv=1&dq=the+wealthy+looser&pg=PA228&printsec=frontcover" target="_blank" rel="noopener">
+            <a class="brand-pill"
+              href="https://www.google.ca/books/edition/The_Wealthy_Loser/cBPIEAAAQBAJ?hl=en&gbpv=1&dq=the+wealthy+looser&pg=PA228&printsec=frontcover"
+              target="_blank" rel="noopener">
               <span class="brand-icon google" aria-hidden="true">G</span>
               <span>Google Books</span>
-            </a>
-            <a class="brand-pill" href="https://books.apple.com/ca/" target="_blank" rel="noopener">
-              <span class="brand-icon apple" aria-hidden="true"></span>
-              <span>Apple Books</span>
             </a>
           </div>
         </div>
@@ -353,8 +568,10 @@
           <h3 style="margin-top:0;">Why readers stay</h3>
           <ul class="bullet-list">
             <li><span class="check">✓</span><span>Concrete practices to turn hardship into victory.</span></li>
-            <li><span class="check">✓</span><span>Written for Canadians with retailer redirects and local donation options.</span></li>
-            <li><span class="check">✓</span><span>Includes access to the companion UniverCity healing program.</span></li>
+            <li><span class="check">✓</span><span>Written for Canadians with retailer redirects and local donation
+                options.</span></li>
+            <li><span class="check">✓</span><span>Includes access to the companion TheWealthyLoser healing
+                program.</span></li>
           </ul>
           <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
             <a class="btn btn-primary" href="#payments">See payment options</a>
@@ -368,23 +585,32 @@
       <div class="section-inner">
         <div>
           <div class="eyebrow">Soulful Companions</div>
-          <h2>UniverCity Program ($59.95)</h2>
-          <p>At UniverCity, we believe that everyone deserves kindness, connection, and compassion. Our compassionate companions program is dedicated to supporting elderly individuals and people with disabilities by providing meaningful companionship, emotional support, and a sense of community.</p>
-          <p>Once you purchase the program, you will receive the program, but a free copy of my book will be shipped to you with a logistics fee with Amazon. A $10 value.</p>
+          <h2>TheWealthyLoser Program ($59.95)</h2>
+          <p>At TheWealthyLoser, we believe that everyone deserves kindness, connection, and compassion. Our
+            compassionate companions program is dedicated to supporting elderly individuals and people with disabilities
+            by providing meaningful companionship, emotional support, and a sense of community.</p>
+          <p>Once you purchase the program, you will receive the program, but a free copy of my book will be shipped to
+            you with a logistics fee with Amazon. A $10 value.</p>
           <ul class="bullet-list">
             <li><span class="check">✓</span><span>You will be donating $10 towards a future in recovery.</span></li>
-            <li><span class="check">✓</span><span>$10 towards helping children in the community and memory of Diana, Princess of Wales, to honor her humanitarian legacy and support hunger relief.</span></li>
+            <li><span class="check">✓</span><span>$10 towards helping children in the community and memory of Diana,
+                Princess of Wales, to honor her humanitarian legacy and support hunger relief.</span></li>
             <li><span class="check">✓</span><span>$10 to Food Banks.</span></li>
           </ul>
-          <p style="margin-top:12px; font-weight: 600; color:#7a1dc2;">And just to be clear $9.95 will be applied towards my own self development and future as a creator and father.</p>
+          <p style="margin-top:12px; font-weight: 600; color:var(--primary-strong);">And just to be clear $9.95 will be
+            applied towards my own self development and future as a creator and father.</p>
           <div style="display:flex; gap:10px; flex-wrap: wrap; margin-top:14px;">
-            <a class="btn btn-primary" href="https://example.com/stripe-program" target="_blank" rel="noopener">Purchase Program</a>
+            <a class="btn btn-primary" href="https://example.com/stripe-program" target="_blank" rel="noopener">Purchase
+              Program</a>
             <a class="btn btn-ghost" href="#contact">Contact us</a>
           </div>
         </div>
-        <div class="card" style="text-align:center; background:linear-gradient(135deg,#dbeafe,#f3e8ff);">
-          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1000&q=80" alt="Light beams rising in the sky" style="width:100%; border-radius: 14px; box-shadow: 0 20px 40px rgba(0,0,0,0.12);" />
-          <p style="margin:12px 0 0; color:#1f2937;">Purchase price is applied to program, book, and community support.</p>
+        <div class="card" style="text-align:center; background:linear-gradient(135deg,#e0f2f1,#e8f5e9);">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1000&q=80"
+            alt="Light beams rising in the sky"
+            style="width:100%; border-radius: 14px; box-shadow: 0 20px 40px rgba(0,0,0,0.12);" />
+          <p style="margin:12px 0 0; color:#1f2937;">Purchase price is applied to program, book, and community support.
+          </p>
         </div>
       </div>
     </section>
@@ -394,29 +620,52 @@
         <div>
           <div class="eyebrow">Payment in Canada</div>
           <h2>Secure checkout for donations and purchases</h2>
-          <p>Use Stripe Checkout for cards, Apple Pay, or Google Pay; PayPal for supporters who prefer wallets; and Interac e-Transfer for Canadian banking. Keep donations and book orders in separate payment links so every transaction is easy to reconcile.</p>
+          <p>Use Stripe Checkout for cards, Apple Pay, or Google Pay; PayPal for supporters who prefer wallets; and
+            Interac e-Transfer for Canadian banking. Keep donations and book orders in separate payment links so every
+            transaction is easy to reconcile.</p>
           <div class="grid-3" style="margin-top:14px;">
-            <div class="mini-card"><h3>Stripe</h3><p>Create two Stripe Checkout links—one for donations with custom amounts and one fixed for the book or $59.95 program.</p></div>
-            <div class="mini-card"><h3>PayPal</h3><p>Add a PayPal Donate button and a PayPal “Buy Now” button for readers who avoid cards.</p></div>
-            <div class="mini-card"><h3>Interac</h3><p>Publish the Interac e-Transfer email (e.g., payments@univercity.ca) and an auto-deposit note for local supporters.</p></div>
+            <div class="mini-card">
+              <h3>Stripe</h3>
+              <p>Create two Stripe Checkout links—one for donations with custom amounts and one fixed for the book or
+                $59.95 program.</p>
+            </div>
+            <div class="mini-card">
+              <h3>PayPal</h3>
+              <p>Add a PayPal Donate button and a PayPal “Buy Now” button for readers who avoid cards.</p>
+            </div>
+            <div class="mini-card">
+              <h3>Interac</h3>
+              <p>Publish the Interac e-Transfer email (e.g., payments@TheWealthyLoser.ca) and an auto-deposit note for
+                local supporters.</p>
+            </div>
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-            <a class="btn btn-primary" href="https://example.com/stripe-book" target="_blank" rel="noopener">Pay with Stripe</a>
-            <a class="btn btn-ghost" href="https://www.paypal.com/donate" target="_blank" rel="noopener">Pay with PayPal</a>
-            <a class="btn btn-ghost" href="mailto:payments@univercity.ca?subject=Interac%20Payment" rel="noopener">Interac Instructions</a>
+            <a class="btn btn-primary" href="https://example.com/stripe-book" target="_blank" rel="noopener">Pay with
+              Stripe</a>
+            <a class="btn btn-ghost" href="https://www.paypal.com/donate" target="_blank" rel="noopener">Pay with
+              PayPal</a>
+            <a class="btn btn-ghost" href="mailto:payments@TheWealthyLoser.ca?subject=Interac%20Payment"
+              rel="noopener">Interac Instructions</a>
           </div>
         </div>
-          <div class="card">
-            <h3 style="margin-top:0;">Book retailers</h3>
-            <p style="color:#475569;">Prefer your favorite store? Redirect to trusted partners and keep shoppers in Canada happy.</p>
-            <ul class="bullet-list" style="color:#1f2937;">
-            <li><span class="check" style="background:#10b981;">✓</span><a href="https://www.amazon.ca/Wealthy-Loser-Caught-Between-Heaven/dp/1039155685?crid=3RHX0JDBRVDGU&dib=eyJ2IjoiMSJ9.-LAW0rqJ2NXh1MQcJcFO2w.3TreqaZA2DAGSPrfCzTV0xv6AHTYjeQtxJtxSoSxHm4&dib_tag=se&keywords=the+wealthy+loser&qid=1765565613&sprefix=the+wealthy+looser%2Caps%2C151&sr=8-1" target="_blank" rel="noopener">Amazon Canada listing</a></li>
-            <li><span class="check" style="background:#10b981;">✓</span><a href="https://www.indigo.ca/en-ca/the-wealthy-loser-caught-between-heaven-and-hell/9781039155688.html" target="_blank" rel="noopener">Indigo / Chapters listing</a></li>
-            <li><span class="check" style="background:#10b981;">✓</span><a href="https://www.google.ca/books/edition/The_Wealthy_Loser/cBPIEAAAQBAJ?hl=en&gbpv=1&dq=the+wealthy+looser&pg=PA228&printsec=frontcover" target="_blank" rel="noopener">Google Books preview</a></li>
-            </ul>
-            <p style="color:#475569;">Include UTM tags in these outbound links to track referral performance.</p>
-          </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Book retailers</h3>
+          <p style="color:#475569;">Prefer your favorite store? Redirect to trusted partners and keep shoppers in Canada
+            happy.</p>
+          <ul class="bullet-list" style="color:#1f2937;">
+            <li><span class="check" style="background:var(--primary);">✓</span><a
+                href="https://www.amazon.ca/Wealthy-Loser-Caught-Between-Heaven/dp/1039155685?crid=3RHX0JDBRVDGU&dib=eyJ2IjoiMSJ9.-LAW0rqJ2NXh1MQcJcFO2w.3TreqaZA2DAGSPrfCzTV0xv6AHTYjeQtxJtxSoSxHm4&dib_tag=se&keywords=the+wealthy+loser&qid=1765565613&sprefix=the+wealthy+looser%2Caps%2C151&sr=8-1"
+                target="_blank" rel="noopener">Amazon Canada listing</a></li>
+            <li><span class="check" style="background:var(--primary);">✓</span><a
+                href="https://www.indigo.ca/en-ca/the-wealthy-loser-caught-between-heaven-and-hell/9781039155688.html"
+                target="_blank" rel="noopener">Indigo / Chapters listing</a></li>
+            <li><span class="check" style="background:var(--primary);">✓</span><a
+                href="https://www.google.ca/books/edition/The_Wealthy_Loser/cBPIEAAAQBAJ?hl=en&gbpv=1&dq=the+wealthy+looser&pg=PA228&printsec=frontcover"
+                target="_blank" rel="noopener">Google Books preview</a></li>
+          </ul>
+          <p style="color:#475569;">Include UTM tags in these outbound links to track referral performance.</p>
         </div>
+      </div>
     </section>
 
     <section id="reviews" class="section">
@@ -424,7 +673,8 @@
         <div>
           <div class="eyebrow">Community Voice</div>
           <h2>Share your story or review</h2>
-          <p>Reviews are sent directly to the admin inbox for moderation before publishing. Add them below and we’ll feature highlights.</p>
+          <p>Reviews are sent directly to the admin inbox for moderation before publishing. Add them below and we’ll
+            feature highlights.</p>
           <form class="card" action="https://formspree.io/f/mzbnbnzl" method="POST">
             <label>Name<input required name="reviewer" type="text"></label>
             <label>Email<input required name="email" type="email"></label>
@@ -450,9 +700,18 @@
         <div class="card">
           <h3 style="margin-top:0;">Recent highlights</h3>
           <div class="grid-3">
-            <div class="mini-card"><h3>“Fast relief.”</h3><p>“Stripe checkout was painless and I dove right into the program.” – Sam</p></div>
-            <div class="mini-card"><h3>“Flexible paying.”</h3><p>“Loved having Interac for donations—felt local and easy.” – Priya</p></div>
-            <div class="mini-card"><h3>“Great support.”</h3><p>“Admin answered my bulk order questions within hours.” – Chris</p></div>
+            <div class="mini-card">
+              <h3>“Fast relief.”</h3>
+              <p>“Stripe checkout was painless and I dove right into the program.” – Sam</p>
+            </div>
+            <div class="mini-card">
+              <h3>“Flexible paying.”</h3>
+              <p>“Loved having Interac for donations—felt local and easy.” – Priya</p>
+            </div>
+            <div class="mini-card">
+              <h3>“Great support.”</h3>
+              <p>“Admin answered my bulk order questions within hours.” – Chris</p>
+            </div>
           </div>
         </div>
       </div>
@@ -471,13 +730,17 @@
             <button class="btn btn-primary" type="submit">Send message</button>
           </form>
         </div>
-        <div class="card" style="background:linear-gradient(135deg,#f8f9ff,#ede9fe); color:#0f172a; border:1px solid #e0e7ff;">
+        <div class="card"
+          style="background:linear-gradient(135deg,#f1f9f3,#e2f1e5); color:#0f172a; border:1px solid #cfe8d1;">
           <h3 style="margin-top:0;">Admin hotline</h3>
           <p>Reach out directly for questions about donations, payment links, or program support.</p>
-          <p style="margin:12px 0 0; font-weight:700;">Email: <a href="mailto:admin@univercity.ca" style="color:var(--primary-strong);">admin@univercity.ca</a></p>
+          <p style="margin:12px 0 0; font-weight:700;">Email: <a href="mailto:admin@TheWealthyLoser.ca"
+              style="color:var(--primary-strong);">admin@TheWealthyLoser.ca</a></p>
           <form action="https://formspree.io/f/mzbnbnzl" method="POST" style="margin-top:12px; display:grid; gap:10px;">
-            <input type="email" name="newsletter" placeholder="Your email" required style="padding:12px; border-radius:12px; border:none;">
-            <button class="btn btn-ghost" type="submit" style="background:#fff; color:var(--primary);">Subscribe</button>
+            <input type="email" name="newsletter" placeholder="Your email" required
+              style="padding:12px; border-radius:12px; border:none;">
+            <button class="btn btn-ghost" type="submit"
+              style="background:#fff; color:var(--primary);">Subscribe</button>
           </form>
         </div>
       </div>
@@ -489,7 +752,7 @@
       <div style="display:flex; align-items:center; gap:10px;">
         <span class="brand-logo">U</span>
         <div>
-          <strong>UniverCity</strong>
+          <strong>TheWealthyLoser</strong>
           <p style="margin:2px 0 0; color:#94a3b8;">The Twin Towers of Recovery</p>
         </div>
       </div>
@@ -499,8 +762,9 @@
         <a href="#payments">Payments</a>
         <a href="mailto:hello@example.com">hello@example.com</a>
       </div>
-      <small style="color:#94a3b8;">© 2024 UniverCity. Built light for fast loading.</small>
+      <small style="color:#94a3b8;">© 2024 TheWealthyLoser. Built light for fast loading.</small>
     </div>
   </footer>
 </body>
+
 </html>
