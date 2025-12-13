@@ -566,7 +566,7 @@
             <h2>Moments from the journey</h2>
             <p>Peek inside the TheWealthyLoser story—book events, community meetups, and everyday healing moments.</p>
           </div>
-          <a class="btn btn-primary" href="#share-photo">Share your photo</a>
+          <a class="btn btn-primary" href="mailto:thewealthyloser@mail.com?subject=Gallery%20Photo%20Submission">Email your photo</a>
         </div>
         <div class="carousel journey-carousel" data-carousel data-carousel-interval="7000" style="margin-top:18px;">
           <button class="carousel-control prev" type="button" aria-label="Previous gallery photo">‹</button>
@@ -631,20 +631,10 @@
           </div>
         </div>
         <div id="share-photo" class="card" style="margin-top:24px;">
-          <h3 style="margin-top:0;">Send us your photo</h3>
-          <p style="margin:0 0 14px; color:#475569;">Upload images straight from your device so the admin team can add
-            them to the gallery.</p>
-          <form action="https://formspree.io/f/mzbnbnzl" method="POST" enctype="multipart/form-data"
-            style="display:grid; gap:12px;">
-            <input type="hidden" name="_subject" value="New gallery photo submission">
-            <label>Full Name<input required name="name" type="text"></label>
-            <label>Email<input required name="email" type="email"></label>
-            <label>Caption<textarea name="caption" rows="2" placeholder="Tell us about the moment"></textarea></label>
-            <label>Photo upload<input required name="attachment" type="file" accept="image/*"></label>
-            <button class="btn btn-primary" type="submit">Send to admin</button>
-          </form>
-          <p style="margin:14px 0 0; font-size:14px; color:#6b7280;">Photos and details are emailed to
-            admin@univercity.ca once you verify this Formspree form with that inbox.</p>
+          <h3 style="margin-top:0;">Share your photo</h3>
+          <p style="margin:0; color:#475569;">Send your favorite moment directly to <a
+              href="mailto:thewealthyloser@mail.com?subject=Gallery%20Photo%20Submission">thewealthyloser@mail.com</a>
+            and we’ll publish it in a future gallery update.</p>
         </div>
       </div>
     </section>
@@ -759,7 +749,7 @@
             </div>
             <div class="mini-card">
               <h3>Interac</h3>
-              <p>Publish the Interac e-Transfer email (e.g., payments@TheWealthyLoser.ca) and an auto-deposit note for
+              <p>Publish the Interac e-Transfer email (e.g., theWealthyLoser@mail.com) and an auto-deposit note for
                 local supporters.</p>
             </div>
           </div>
@@ -768,7 +758,7 @@
               Stripe</a>
             <a class="btn btn-ghost" href="https://www.paypal.com/donate" target="_blank" rel="noopener">Pay with
               PayPal</a>
-            <a class="btn btn-ghost" href="mailto:payments@TheWealthyLoser.ca?subject=Interac%20Payment"
+            <a class="btn btn-ghost" href="mailto:theWealthyLoser@mail.com?subject=Interac%20Payment"
               rel="noopener">Interac Instructions</a>
           </div>
         </div>
@@ -799,7 +789,7 @@
           <h2>Share your story or review</h2>
           <p>Reviews are sent directly to the admin inbox for moderation before publishing. Add them below and we’ll
             feature highlights.</p>
-          <form class="card" action="https://formspree.io/f/mzbnbnzl" method="POST">
+          <form class="card" id="reviewForm" action="https://formspree.io/f/mqarwolk" method="POST">
             <label>Name<input required name="reviewer" type="text"></label>
             <label>Email<input required name="email" type="email"></label>
             <div>
@@ -847,7 +837,7 @@
           <div class="eyebrow">Contact</div>
           <h2>Start the conversation</h2>
           <p>Share how we can help—whether you need a media kit, bulk copies, or scholarship seats.</p>
-          <form class="card" action="https://formspree.io/f/mzbnbnzl" method="POST">
+          <form class="card" action="https://formspree.io/f/mqarwolk" method="POST">
             <label>Full Name<input required name="name" type="text"></label>
             <label>Email<input required name="email" type="email"></label>
             <label>What do you need?<textarea name="message" rows="3"></textarea></label>
@@ -860,7 +850,7 @@
           <p>Reach out directly for questions about donations, payment links, or program support.</p>
           <p style="margin:12px 0 0; font-weight:700;">Email: <a href="mailto:thewealthyloser@mail.com"
               style="color:var(--primary-strong);">thewealthyloser@mail.com</a></p>
-          <form action="https://formspree.io/f/mzbnbnzl" method="POST" style="margin-top:12px; display:grid; gap:10px;">
+          <form action="https://formspree.io/f/mqarwolk" method="POST" style="margin-top:12px; display:grid; gap:10px;">
             <input type="email" name="newsletter" placeholder="Your email" required
               style="padding:12px; border-radius:12px; border:none;">
             <button class="btn btn-ghost" type="submit"
@@ -884,12 +874,32 @@
         <a href="#book">Book</a>
         <a href="#program">Program</a>
         <a href="#payments">Payments</a>
-        <a href="mailto:hello@example.com">hello@example.com</a>
+        <a href="mailto:thewealthyloser@mail.com">thewealthyloser@mail.com</a>
       </div>
       <small style="color:#94a3b8;">© 2024 TheWealthyLoser. Built light for fast loading.</small>
     </div>
   </footer>
   <script>
+    // Review form handler
+    document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      
+      try {
+        await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+        
+        form.reset();
+        alert('Thank you! Your review has been sent successfully.');
+      } catch (error) {
+        alert('Sorry, there was an error sending your review. Please try again.');
+      }
+    });
+
     (() => {
       document.querySelectorAll('[data-carousel]').forEach((carousel) => {
         const track = carousel.querySelector('[data-carousel-track]');
