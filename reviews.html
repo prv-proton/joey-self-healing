@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheWealthyLoser | Reviews</title>
+  <meta name="description" content="Share your review of TheWealthyLoser and read recent highlights from the community." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="index.html"><span class="brand-logo">U</span> TheWealthyLoser</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="book.html">Book</a>
+        <a href="program.html">Program</a>
+        <a href="payments.html">Payments</a>
+        <a href="gallery.html">Gallery</a>
+        <a class="active" href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-grid">
+          <div class="eyebrow">Community voice</div>
+          <h1 class="headline">Share your story or review</h1>
+          <p class="subhead">Reviews are sent directly to the admin inbox for moderation before publishing. Add yours below and we’ll feature highlights on this page.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Recent highlights</h3>
+          <div class="grid-3">
+            <div class="mini-card">
+              <h3>“Fast relief.”</h3>
+              <p>“Stripe checkout was painless and I dove right into the program.” – Sam</p>
+            </div>
+            <div class="mini-card">
+              <h3>“Flexible paying.”</h3>
+              <p>“Loved having Interac for donations—felt local and easy.” – Priya</p>
+            </div>
+            <div class="mini-card">
+              <h3>“Great support.”</h3>
+              <p>“Admin answered my bulk order questions within hours.” – Chris</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <div>
+          <div class="eyebrow">Add yours</div>
+          <h2>Send a review</h2>
+          <form class="card" id="reviewForm" action="https://formspree.io/f/mqarwolk" method="POST">
+            <label>Name<input required name="reviewer" type="text"></label>
+            <label>Email<input required name="email" type="email"></label>
+            <div>
+              <div style="font-weight:600; margin-bottom:6px;">Rating</div>
+              <div class="star-rating" aria-label="Rate from 1 to 5 stars">
+                <input type="radio" id="star5" name="rating" value="5" required>
+                <label for="star5" aria-label="5 stars">★</label>
+                <input type="radio" id="star4" name="rating" value="4">
+                <label for="star4" aria-label="4 stars">★</label>
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3" aria-label="3 stars">★</label>
+                <input type="radio" id="star2" name="rating" value="2">
+                <label for="star2" aria-label="2 stars">★</label>
+                <input type="radio" id="star1" name="rating" value="1">
+                <label for="star1" aria-label="1 star">★</label>
+              </div>
+            </div>
+            <label>Your Review<textarea name="review" rows="3"></textarea></label>
+            <button class="btn btn-primary" type="submit">Send Review</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Why reviews matter</h3>
+          <p style="color:#475569;">Every review helps refine the healing program and provides social proof for new readers.</p>
+          <ul class="bullet-list">
+            <li><span class="check">✓</span><span>Readers discover the book and program through your stories.</span></li>
+            <li><span class="check">✓</span><span>Private submissions keep feedback safe and easy to moderate.</span></li>
+            <li><span class="check">✓</span><span>Highlights appear on the home page carousel.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span class="brand-logo">U</span>
+        <div>
+          <strong>TheWealthyLoser</strong>
+          <p style="margin:2px 0 0; color:#94a3b8;">The Twin Towers of Recovery</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap; color:#cbd5e1;">
+        <a href="book.html">Book</a>
+        <a href="program.html">Program</a>
+        <a href="payments.html">Payments</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <small style="color:#94a3b8;">© 2024 TheWealthyLoser. Built light for fast loading.</small>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

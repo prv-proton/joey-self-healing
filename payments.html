@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheWealthyLoser | Payments</title>
+  <meta name="description" content="Secure payment options for donations, the book, and the program—Stripe, PayPal, and Interac guidance for Canadian supporters." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="index.html"><span class="brand-logo">U</span> TheWealthyLoser</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="book.html">Book</a>
+        <a href="program.html">Program</a>
+        <a class="active" href="payments.html">Payments</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-grid">
+          <div class="eyebrow">Payment in Canada</div>
+          <h1 class="headline">Secure checkout for donations and purchases</h1>
+          <p class="subhead">Use Stripe Checkout for cards and wallets, PayPal for supporters who prefer it, and Interac e‑Transfer for local banking. Keep donations and orders separate for clear reconciliation.</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="https://example.com/stripe-book" target="_blank" rel="noopener">Pay with Stripe</a>
+            <a class="btn btn-ghost" href="https://www.paypal.com/donate" target="_blank" rel="noopener">Pay with PayPal</a>
+            <a class="btn btn-ghost" href="mailto:theWealthyLoser@mail.com?subject=Interac%20Payment" rel="noopener">Interac instructions</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Book retailers</h3>
+          <p style="color:#475569;">Prefer your favorite store? Redirect to trusted partners and keep shoppers in Canada happy.</p>
+          <ul class="bullet-list" style="color:#1f2937;">
+            <li><span class="check" style="background:var(--primary);">✓</span><a href="https://www.amazon.ca/Wealthy-Loser-Caught-Between-Heaven/dp/1039155685" target="_blank" rel="noopener">Amazon Canada listing</a></li>
+            <li><span class="check" style="background:var(--primary);">✓</span><a href="https://www.indigo.ca/en-ca/the-wealthy-loser-caught-between-heaven-and-hell/9781039155688.html" target="_blank" rel="noopener">Indigo / Chapters listing</a></li>
+            <li><span class="check" style="background:var(--primary);">✓</span><a href="https://www.google.ca/books/edition/The_Wealthy_Loser/cBPIEAAAQBAJ" target="_blank" rel="noopener">Google Books preview</a></li>
+          </ul>
+          <p style="color:#475569;">Include UTM tags in these outbound links to track referral performance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <div>
+          <div class="eyebrow">How to configure</div>
+          <h2>Recommended setup</h2>
+          <div class="grid-3" style="margin-top:14px;">
+            <div class="mini-card">
+              <h3>Stripe</h3>
+              <p>Create two Stripe Checkout links—one for donations with custom amounts and one fixed for the book or $59.95 program.</p>
+            </div>
+            <div class="mini-card">
+              <h3>PayPal</h3>
+              <p>Add a PayPal Donate button and a PayPal “Buy Now” button for readers who avoid cards.</p>
+            </div>
+            <div class="mini-card">
+              <h3>Interac</h3>
+              <p>Publish the Interac e-Transfer email (e.g., theWealthyLoser@mail.com) and an auto-deposit note for local supporters.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Keeping records clean</h3>
+          <ul class="bullet-list">
+            <li><span class="check">✓</span><span>Separate donation links from product links.</span></li>
+            <li><span class="check">✓</span><span>Use confirmation emails to capture address details for book shipping.</span></li>
+            <li><span class="check">✓</span><span>Respond quickly to bulk-order or scholarship requests from the contact form.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span class="brand-logo">U</span>
+        <div>
+          <strong>TheWealthyLoser</strong>
+          <p style="margin:2px 0 0; color:#94a3b8;">The Twin Towers of Recovery</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap; color:#cbd5e1;">
+        <a href="book.html">Book</a>
+        <a href="program.html">Program</a>
+        <a href="payments.html">Payments</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <small style="color:#94a3b8;">© 2024 TheWealthyLoser. Built light for fast loading.</small>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
