@@ -97,6 +97,8 @@ const initReviewForm = () => {
 };
 
 const initCarousels = () => {
+  const axisQuery = window.matchMedia('(max-width: 720px)');
+
   document.querySelectorAll('[data-carousel]').forEach((carousel) => {
     const track = carousel.querySelector('[data-carousel-track]');
     if (!track) return;
@@ -105,15 +107,34 @@ const initCarousels = () => {
     const indicators = Array.from(carousel.querySelectorAll('[data-carousel-indicator]'));
     const prev = carousel.querySelector('.carousel-control.prev');
     const next = carousel.querySelector('.carousel-control.next');
+    const windowEl = carousel.querySelector('.carousel-window');
     const interval = Number(carousel.dataset.carouselInterval) || 6000;
     let index = 0;
     let timer;
 
+    const updateWindowHeight = () => {
+      if (!windowEl) return;
+      if (axisQuery.matches && slides[index]) {
+        windowEl.style.height = `${slides[index].offsetHeight}px`;
+      } else {
+        windowEl.style.height = '';
+      }
+    };
+
     const setActive = (idx) => {
       const offset = (idx + slides.length) % slides.length;
-      track.style.transform = `translateX(-${offset * 100}%)`;
+      const slide = slides[offset];
+      if (!slide) return;
+      if (axisQuery.matches) {
+        const baseTop = slides[0]?.offsetTop || 0;
+        track.style.transform = `translateY(-${slide.offsetTop - baseTop}px)`;
+      } else {
+        const baseLeft = slides[0]?.offsetLeft || 0;
+        track.style.transform = `translateX(-${slide.offsetLeft - baseLeft}px)`;
+      }
       indicators.forEach((btn, i) => btn.classList.toggle('active', i === offset));
       index = offset;
+      updateWindowHeight();
     };
 
     const queueAutoAdvance = () => {
@@ -143,6 +164,16 @@ const initCarousels = () => {
 
     setActive(0);
     queueAutoAdvance();
+
+    const handleAxisChange = () => {
+      setActive(index);
+    };
+
+    if (axisQuery.addEventListener) {
+      axisQuery.addEventListener('change', handleAxisChange);
+    } else if (axisQuery.addListener) {
+      axisQuery.addListener(handleAxisChange);
+    }
   });
 };
 
