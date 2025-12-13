@@ -61,7 +61,7 @@ const highlightActiveNavLink = () => {
 const initThemePicker = () => {
   const themeButtons = document.querySelectorAll('[data-theme-choice]');
   if (!themeButtons.length) return;
-  const savedTheme = readStoredTheme() || document.documentElement.dataset.theme || 'green';
+  const savedTheme = readStoredTheme() || document.documentElement.dataset.theme || 'soft-green';
   setThemeChoice(savedTheme);
   themeButtons.forEach((button) => {
     button.addEventListener('click', () => {
