@@ -58,10 +58,57 @@ const highlightActiveNavLink = () => {
   });
 };
 
+const REVIEWS_HASH = '#reviews';
+const DEFAULT_SCROLL_OFFSET = 200;
+
+const scrollWithOffset = (selector, behavior = 'smooth') => {
+  const target = document.querySelector(selector);
+  if (!target) return;
+  const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+  const header = document.querySelector('.site-header');
+  const headerOffset = header ? header.getBoundingClientRect().height - 120 : DEFAULT_SCROLL_OFFSET;
+  const offsetPosition = Math.max(targetPosition - headerOffset, 0);
+  window.scrollTo({ top: offsetPosition, behavior });
+};
+
+const isSameDocumentLink = (href) => {
+  if (!href) return false;
+  if (href.startsWith('#')) return true;
+  const [path] = href.split('#');
+  const current = window.location.pathname.split('/').pop() || 'index.html';
+  return path === '' || path === current;
+};
+
+const initReviewAnchors = () => {
+  const reviewLinks = document.querySelectorAll('a[href$="#reviews"]');
+  reviewLinks.forEach((link) => {
+    const href = link.getAttribute('href') || '';
+    if (!isSameDocumentLink(href)) return;
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      scrollWithOffset(REVIEWS_HASH);
+      history.replaceState(null, '', REVIEWS_HASH);
+    });
+  });
+
+  const handleHash = () => {
+    if (window.location.hash === REVIEWS_HASH) {
+      scrollWithOffset(REVIEWS_HASH, 'auto');
+    }
+  };
+
+  const handleHashDeferred = () => {
+    setTimeout(handleHash, 100);
+  };
+
+  handleHashDeferred();
+  window.addEventListener('hashchange', handleHashDeferred);
+};
+
 const initThemePicker = () => {
   const themeButtons = document.querySelectorAll('[data-theme-choice]');
   if (!themeButtons.length) return;
-  const savedTheme = readStoredTheme() || document.documentElement.dataset.theme || 'soft-green';
+  const savedTheme = readStoredTheme() || document.documentElement.dataset.theme || 'lavender';
   setThemeChoice(savedTheme);
   themeButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -180,6 +227,7 @@ const initCarousels = () => {
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
   highlightActiveNavLink();
+  initReviewAnchors();
   initThemePicker();
   initReviewForm();
   initCarousels();
