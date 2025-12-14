@@ -120,6 +120,24 @@ const initThemePicker = () => {
   });
 };
 
+const initMobileNav = () => {
+  document.querySelectorAll('.nav').forEach((nav) => {
+    const toggle = nav.querySelector('.nav-toggle');
+    if (!toggle) return;
+    const closeMenu = () => {
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+    toggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    nav.querySelectorAll('.nav-links a, .nav-actions a').forEach((link) => {
+      link.addEventListener('click', () => closeMenu());
+    });
+  });
+};
+
 const initReviewForm = () => {
   const reviewForm = document.getElementById('reviewForm');
   if (!reviewForm) return;
@@ -228,6 +246,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
   highlightActiveNavLink();
   initReviewAnchors();
+  initMobileNav();
   initThemePicker();
   initReviewForm();
   initCarousels();
