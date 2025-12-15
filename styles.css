@@ -490,7 +490,8 @@ nav a:hover {
 .hero-wireframe {
   position: relative;
   isolation: isolate;
-  min-height: 90vh;
+  min-height: 100vh;
+  height: 100vh;
   padding: 150px 5vw;
   display: flex;
   align-items: center;
@@ -1240,6 +1241,7 @@ footer {
 
   .hero-wireframe {
     min-height: auto;
+    height: auto;
     padding: 60px 20px;
     align-items: flex-start;
   }
