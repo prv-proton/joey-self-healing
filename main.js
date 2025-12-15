@@ -1,4 +1,5 @@
 const THEME_STORAGE_KEY = 'uc-theme-choice';
+const DEFAULT_THEME = 'lavender';
 
 function readStoredTheme() {
   try {
@@ -9,10 +10,7 @@ function readStoredTheme() {
 }
 
 function bootstrapTheme() {
-  const savedTheme = readStoredTheme();
-  if (savedTheme) {
-    document.documentElement.dataset.theme = savedTheme;
-  }
+  document.documentElement.dataset.theme = DEFAULT_THEME;
 }
 
 function setThemeChoice(theme) {
@@ -22,11 +20,6 @@ function setThemeChoice(theme) {
   } catch (error) {
     console.warn('Unable to store theme preference', error);
   }
-  document.querySelectorAll('[data-theme-choice]').forEach((button) => {
-    const isActive = button.dataset.themeChoice === theme;
-    button.classList.toggle('active', isActive);
-    button.setAttribute('aria-pressed', String(isActive));
-  });
 }
 
 bootstrapTheme();
@@ -103,21 +96,6 @@ const initReviewAnchors = () => {
 
   handleHashDeferred();
   window.addEventListener('hashchange', handleHashDeferred);
-};
-
-const initThemePicker = () => {
-  const themeButtons = document.querySelectorAll('[data-theme-choice]');
-  if (!themeButtons.length) return;
-  const savedTheme = readStoredTheme() || document.documentElement.dataset.theme || 'lavender';
-  setThemeChoice(savedTheme);
-  themeButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const choice = button.dataset.themeChoice;
-      if (choice) {
-        setThemeChoice(choice);
-      }
-    });
-  });
 };
 
 const initMobileNav = () => {
@@ -247,7 +225,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   highlightActiveNavLink();
   initReviewAnchors();
   initMobileNav();
-  initThemePicker();
   initReviewForm();
   initCarousels();
+  setThemeChoice(DEFAULT_THEME);
 });
