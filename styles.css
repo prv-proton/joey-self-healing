@@ -1162,6 +1162,19 @@ footer {
   font-weight: 700;
 }
 
+.footer-disclaimer {
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  padding: 16px 18px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+}
+
 .footer-bottom {
   text-align: center;
   background: var(--footer-bottom-bg);
