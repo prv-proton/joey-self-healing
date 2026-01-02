@@ -24,6 +24,81 @@
 <body>
   <div data-include="partials/header.html"></div>
   <main id="top">
+    <section id="gallery" class="section">
+      <div class="section-inner" style="grid-template-columns: 1fr;">
+        <div style="display:flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;">
+          <div>
+            <div class="eyebrow">Soul Companions</div>
+            <h2>Moments from the journey</h2>
+            <p>Peek inside the UniverCcity story — events, community meetups, and everyday healing moments.</p>
+          </div>
+          <a class="btn btn-primary" href="mailto:thewealthyloser@mail.com?subject=Gallery%20Photo%20Submission">Email
+            your photo</a>
+        </div>
+        <div class="carousel journey-carousel" data-carousel data-carousel-interval="7000" style="margin-top:18px;">
+          <button class="carousel-control prev" type="button" aria-label="Previous gallery photo">‹</button>
+          <div class="carousel-window">
+            <div class="carousel-track" data-carousel-track>
+              <div class="carousel-slide">
+                <div class="carousel-slide-grid">
+                  <div class="card" style="padding:0; overflow:hidden;">
+                    <img src="gallery/program-2-300x275.png" alt="Program workbook cover closeup">
+                    <div style="padding:14px;">
+                      <strong>Workbook moments</strong>
+                      <p style="margin:6px 0 0; color:#475569;">Snapshots from the UniverCcity exercises.</p>
+                    </div>
+                  </div>
+                  <div class="card" style="padding:0; overflow:hidden;">
+                    <img src="gallery/program-1.png" alt="Program workbook spread">
+                    <div style="padding:14px;">
+                      <strong>Guided reflections</strong>
+                      <p style="margin:6px 0 0; color:#475569;">Prompts that encourage honest journaling.</p>
+                    </div>
+                  </div>
+                  <div class="card" style="padding:0; overflow:hidden;">
+                    <img src="gallery/program-4.png" alt="Program highlights collage">
+                    <div style="padding:14px;">
+                      <strong>Healing practices</strong>
+                      <p style="margin:6px 0 0; color:#475569;">Daily rituals to stay grounded and hopeful.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="carousel-slide-grid">
+                  <div class="card" style="padding:0; overflow:hidden;">
+                    <img src="gallery/program-2-300x275.png" alt="Program participant smiling">
+                    <div style="padding:14px;">
+                      <strong>Community joy</strong>
+                      <p style="margin:6px 0 0; color:#475569;">Celebrating wins together, big and small.</p>
+                    </div>
+                  </div>
+                  <div class="card" style="padding:0; overflow:hidden;">
+                    <img src="gallery/program-2-300x275.png" alt="Readers at a companion circle">
+                    <div style="padding:14px;">
+                      <strong>Companion circles</strong>
+                      <p style="margin:6px 0 0; color:#475569;">Live meetups to encourage every reader.</p>
+                    </div>
+                  </div>
+                  <div class="card" style="padding:0; overflow:hidden;">
+                    <img src="gallery/program-2-300x275.png" alt="Guided journal practice">
+                    <div style="padding:14px;">
+                      <strong>Guided journaling</strong>
+                      <p style="margin:6px 0 0; color:#475569;">Gentle prompts to keep momentum going.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control next" type="button" aria-label="Next gallery photo">›</button>
+          <div class="carousel-indicators" aria-label="Gallery navigation">
+            <button type="button" class="active" data-carousel-indicator aria-label="Go to slide 1"></button>
+            <button type="button" data-carousel-indicator aria-label="Go to slide 2"></button>
+          </div>
+        </div>
+      </div>
+    </section>
     <section id="program" class="section">
       <div class="section-inner">
         <div>
@@ -55,35 +130,7 @@
           </div>
         </div>
         <div class="card program-visual">
-          <img src="gallery/program-theme.jpeg" alt="Light beams rising in the sky" />
-        </div>
-      </div>
-    </section>
-    <section class="program-collage" aria-label="Program gallery">
-      <div class="program-collage-inner">
-        <span class="program-collage-tag">Compassion In Motion</span>
-        <div class="program-collage-grid">
-          <figure class="collage-item collage-a">
-            <img src="gallery/program-2-300x275.png" alt="Stacked hands symbolizing unity">
-          </figure>
-          <!-- <figure class="collage-item collage-b">
-            <img src="gallery/program-4.png" alt="Heart sculpture lit up with bulbs">
-          </figure>
-          <figure class="collage-item collage-d">
-            <img src="gallery/program-6.png" alt="Volunteer chatting with a senior outside">
-          </figure>
-          <figure class="collage-item collage-e">
-            <img src="gallery/program-7.png" alt="Hands holding gently to comfort someone">
-          </figure>
-          <figure class="collage-item collage-f">
-            <img src="gallery/program-3-1-300x295.jpg" alt="Program participant smiling brightly">
-          </figure>
-          <figure class="collage-item collage-g">
-            <img src="gallery/program-1.png" alt="Vehicle ready to deliver community support">
-          </figure>
-          <figure class="collage-item collage-h">
-            <img src="gallery/program-5.png" alt="Electric vehicle parked near water">
-          </figure> -->
+          <img src="images/program-theme.jpeg" alt="Light beams rising in the sky" />
         </div>
       </div>
     </section>

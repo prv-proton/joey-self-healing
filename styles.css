@@ -607,13 +607,15 @@ nav a:hover {
   position: relative;
   width: 100%;
   border-radius: 18px;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
   background: #fff;
+  padding-bottom: 36px;
 }
 
 .carousel-window {
   overflow: hidden;
+  border-radius: inherit;
 }
 
 .carousel-track {
@@ -649,7 +651,7 @@ nav a:hover {
   height: 38px;
   border-radius: 50%;
   border: none;
-  background: rgba(15, 23, 42, 0.65);
+  background: var(--primary-strong);
   color: #fff;
   cursor: pointer;
   display: grid;
@@ -665,28 +667,38 @@ nav a:hover {
 }
 
 .carousel-control.prev {
-  left: 12px;
+  left: -28px;
 }
 
 .carousel-control.next {
-  right: 12px;
+  right: -28px;
 }
 
 .carousel-indicators {
   position: absolute;
-  bottom: 12px;
+  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
   display: inline-flex;
   gap: 8px;
+}
+@media (max-width: 600px) {
+  .carousel-control.prev {
+    left: 12px;
+  }
+
+  .carousel-control.next {
+    right: 12px;
+  }
 }
 
 .carousel-indicators button {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: none;
   background: rgba(255, 255, 255, 0.6);
+  border: 2px solid var(--primary-border);
+  border-radius: 12px;
   cursor: pointer;
 }
 
