@@ -221,7 +221,7 @@ const initCarousels = () => {
 };
 
 const initFlipbooks = () => {
-  const TURN_DURATION = 750;
+  const TRANSITION_DURATION = 400;
 
   document.querySelectorAll('[data-flipbook]').forEach((book) => {
     const spreads = Array.from(book.querySelectorAll('.reader-spread'));
@@ -241,18 +241,8 @@ const initFlipbooks = () => {
       0,
       spreads.findIndex((spread) => spread.classList.contains('is-active'))
     );
-    let isTurning = false;
+    let isTransitioning = false;
     const totalSpreads = spreads.length;
-    const directionClasses = {
-      forward: 'turn-forward',
-      back: 'turn-back'
-    };
-
-    const clearTurnClasses = () => {
-      spreads.forEach((spread) => {
-        spread.classList.remove('is-turning', 'is-target', 'turn-forward', 'turn-back');
-      });
-    };
 
     const highestPage =
       pages.reduce((max, page) => {
@@ -317,28 +307,15 @@ const initFlipbooks = () => {
     };
 
     const turnTo = (targetIndex) => {
-      if (isTurning) return;
+      if (isTransitioning) return;
       const clamped = Math.max(0, Math.min(targetIndex, totalSpreads - 1));
       if (clamped === index) return;
-      const direction = clamped > index ? 'forward' : 'back';
-      isTurning = true;
-      const directionClass = directionClasses[direction];
-      const currentSpread = spreads[index];
-      const targetSpread = spreads[clamped];
-      book.classList.remove('turn-forward', 'turn-back');
-      // force reflow for repeated animation
-      void book.offsetWidth;
-      book.classList.add(directionClass);
-      clearTurnClasses();
-      currentSpread?.classList.add('is-turning', directionClass);
-      targetSpread?.classList.add('is-target', directionClass);
+      isTransitioning = true;
+      index = clamped;
+      updateSpreadState();
       setTimeout(() => {
-        index = clamped;
-        updateSpreadState();
-        clearTurnClasses();
-        book.classList.remove('turn-forward', 'turn-back');
-        isTurning = false;
-      }, TURN_DURATION);
+        isTransitioning = false;
+      }, TRANSITION_DURATION);
     };
 
     prevButtons.forEach((btn) => btn.addEventListener('click', () => turnTo(index - 1)));
@@ -452,53 +429,6 @@ const initFlipbookHeaderVisibility = () => {
   window.addEventListener('resize', handleVisibility);
 };
 
-const enhanceFlipbook = () => {
-  const style = document.createElement('style');
-  style.textContent = `
-    .reader-book {
-      perspective: 1200px;
-      transform-style: preserve-3d;
-    }
-    
-    .reader-spread {
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transform-origin: left center;
-      backface-visibility: hidden;
-    }
-    
-    .reader-book.turn-forward .reader-spread.is-active {
-      animation: pageFlipForward 0.8s ease-out;
-    }
-    
-    .reader-book.turn-back .reader-spread.is-active {
-      animation: pageFlipBack 0.8s ease-out;
-    }
-    
-    @keyframes pageFlipForward {
-      0% { transform: rotateY(0deg); }
-      50% { transform: rotateY(-90deg); }
-      100% { transform: rotateY(-180deg); }
-    }
-    
-    @keyframes pageFlipBack {
-      0% { transform: rotateY(-180deg); }
-      50% { transform: rotateY(-90deg); }
-      100% { transform: rotateY(0deg); }
-    }
-    
-    .reader-spread.is-prev {
-      transform: rotateY(-180deg);
-    }
-    
-    .reader-page {
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      border-radius: 8px;
-      background: linear-gradient(145deg, #ffffff, #f8f9fa);
-    }
-  `;
-  document.head.appendChild(style);
-};
-
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
   highlightActiveNavLink();
@@ -509,6 +439,5 @@ document.addEventListener('DOMContentLoaded', async () => {
   initFlipbooks();
   initSectionNavigation();
   initFlipbookHeaderVisibility();
-  enhanceFlipbook();
   setThemeChoice(DEFAULT_THEME);
 });
