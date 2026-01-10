@@ -220,6 +220,285 @@ const initCarousels = () => {
   });
 };
 
+const initFlipbooks = () => {
+  const TURN_DURATION = 750;
+
+  document.querySelectorAll('[data-flipbook]').forEach((book) => {
+    const spreads = Array.from(book.querySelectorAll('.reader-spread'));
+    if (!spreads.length) return;
+    const pages = Array.from(book.querySelectorAll('.reader-page'));
+    const bookStage = book.querySelector('.reader-book');
+    const root = book.closest('[data-flip-root]') || book.parentElement || document;
+    const prevButtons = Array.from(book.querySelectorAll('[data-flip-prev]'));
+    const nextButtons = Array.from(book.querySelectorAll('[data-flip-next]'));
+    const currentEl = root.querySelector('[data-flip-current]');
+    const totalEl = root.querySelector('[data-flip-total]');
+    const progressEl = root.querySelector('[data-flip-progress]');
+    const zoomButtons = Array.from(book.querySelectorAll('[data-flip-zoom]'));
+    const zoomLevels = [0.85, 1, 1.15, 1.3];
+    let zoomIndex = 1;
+    let index = Math.max(
+      0,
+      spreads.findIndex((spread) => spread.classList.contains('is-active'))
+    );
+    let isTurning = false;
+    const totalSpreads = spreads.length;
+    const directionClasses = {
+      forward: 'turn-forward',
+      back: 'turn-back'
+    };
+
+    const clearTurnClasses = () => {
+      spreads.forEach((spread) => {
+        spread.classList.remove('is-turning', 'is-target', 'turn-forward', 'turn-back');
+      });
+    };
+
+    const highestPage =
+      pages.reduce((max, page) => {
+        const num = Number(page.dataset.page);
+        if (Number.isFinite(num)) {
+          return Math.max(max, num);
+        }
+        return max;
+      }, 0) || totalPages;
+
+    if (totalEl) totalEl.textContent = highestPage;
+    if (!book.hasAttribute('tabindex')) {
+      book.setAttribute('tabindex', '0');
+    }
+
+    const getPageNumbers = (spread) =>
+      Array.from(spread.querySelectorAll('.reader-page'))
+        .map((page) => {
+          const pageNum = Number(page.dataset.page);
+          return Number.isFinite(pageNum) ? pageNum : null;
+        })
+        .filter((num) => num !== null)
+        .sort((a, b) => a - b);
+
+    const formatPageLabel = (spread) => {
+      const numbers = getPageNumbers(spread);
+      if (!numbers.length) return `${index + 1}`;
+      const first = numbers[0];
+      const last = numbers[numbers.length - 1];
+      return first === last ? String(first) : `${first}–${last}`;
+    };
+
+    const updateSpreadState = () => {
+      spreads.forEach((spread, spreadIndex) => {
+        const isActive = spreadIndex === index;
+        const isPrev = spreadIndex < index;
+        const isNext = spreadIndex === index + 1;
+        spread.classList.toggle('is-active', isActive);
+        spread.classList.toggle('is-prev', isPrev);
+        spread.classList.toggle('is-next', isNext);
+        spread.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      });
+
+      if (currentEl) {
+        currentEl.textContent = formatPageLabel(spreads[index]);
+      }
+
+      if (progressEl) {
+        const numbers = getPageNumbers(spreads[index]);
+        const pageMarker = numbers.length ? numbers[numbers.length - 1] : index + 1;
+        const percent =
+          highestPage > 1 ? ((pageMarker - 1) / (highestPage - 1)) * 100 : 100;
+        progressEl.style.width = `${percent}%`;
+      }
+
+      prevButtons.forEach((btn) => {
+        btn.disabled = index === 0;
+      });
+      nextButtons.forEach((btn) => {
+        btn.disabled = index === totalSpreads - 1;
+      });
+    };
+
+    const turnTo = (targetIndex) => {
+      if (isTurning) return;
+      const clamped = Math.max(0, Math.min(targetIndex, totalSpreads - 1));
+      if (clamped === index) return;
+      const direction = clamped > index ? 'forward' : 'back';
+      isTurning = true;
+      const directionClass = directionClasses[direction];
+      const currentSpread = spreads[index];
+      const targetSpread = spreads[clamped];
+      book.classList.remove('turn-forward', 'turn-back');
+      // force reflow for repeated animation
+      void book.offsetWidth;
+      book.classList.add(directionClass);
+      clearTurnClasses();
+      currentSpread?.classList.add('is-turning', directionClass);
+      targetSpread?.classList.add('is-target', directionClass);
+      setTimeout(() => {
+        index = clamped;
+        updateSpreadState();
+        clearTurnClasses();
+        book.classList.remove('turn-forward', 'turn-back');
+        isTurning = false;
+      }, TURN_DURATION);
+    };
+
+    prevButtons.forEach((btn) => btn.addEventListener('click', () => turnTo(index - 1)));
+    nextButtons.forEach((btn) => btn.addEventListener('click', () => turnTo(index + 1)));
+
+    book.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        turnTo(index - 1);
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        turnTo(index + 1);
+      }
+    });
+
+    const applyZoom = () => {
+      if (!bookStage) return;
+      bookStage.style.setProperty('--reader-scale', zoomLevels[zoomIndex]);
+      zoomButtons.forEach((btn) => {
+        const dir = btn.dataset.flipZoom;
+        if (dir === 'in') {
+          btn.disabled = zoomIndex === zoomLevels.length - 1;
+        } else if (dir === 'out') {
+          btn.disabled = zoomIndex === 0;
+        }
+      });
+    };
+
+    zoomButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.flipZoom === 'in') {
+          zoomIndex = Math.min(zoomIndex + 1, zoomLevels.length - 1);
+        } else {
+          zoomIndex = Math.max(0, zoomIndex - 1);
+        }
+        applyZoom();
+      });
+    });
+
+    applyZoom();
+    updateSpreadState();
+  });
+};
+
+const initSectionNavigation = () => {
+  const sections = Array.from(document.querySelectorAll('section'));
+  const header = document.querySelector('.site-header');
+  if (!sections.length) return;
+
+  let currentSectionIndex = 0;
+
+  const scrollToSection = (index, behavior = 'smooth') => {
+    const section = sections[index];
+    if (!section) return;
+    
+    const targetPosition = section.getBoundingClientRect().top + window.pageYOffset;
+    const headerOffset = header ? header.getBoundingClientRect().height + 20 : 100;
+    const offsetPosition = Math.max(targetPosition - headerOffset, 0);
+    
+    window.scrollTo({ top: offsetPosition, behavior });
+    currentSectionIndex = index;
+  };
+
+  const updateCurrentSection = () => {
+    const scrollPosition = window.pageYOffset + window.innerHeight / 2;
+    
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const section = sections[i];
+      const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
+      
+      if (scrollPosition >= sectionTop) {
+        currentSectionIndex = i;
+        break;
+      }
+    }
+  };
+
+  window.addEventListener('scroll', updateCurrentSection);
+  updateCurrentSection();
+};
+
+const initFlipbookHeaderVisibility = () => {
+  const header = document.querySelector('.site-header');
+  const flipbookSection = document.querySelector('.flipbook-section');
+  if (!header || !flipbookSection) return;
+
+  const setHidden = (hidden) => {
+    header.classList.toggle('is-hidden', hidden);
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => setHidden(entry.isIntersecting));
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(flipbookSection);
+    return;
+  }
+
+  const handleVisibility = () => {
+    const rect = flipbookSection.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const isVisible = rect.top < viewportHeight && rect.bottom > 0;
+    setHidden(isVisible);
+  };
+
+  handleVisibility();
+  window.addEventListener('scroll', handleVisibility);
+  window.addEventListener('resize', handleVisibility);
+};
+
+const enhanceFlipbook = () => {
+  const style = document.createElement('style');
+  style.textContent = `
+    .reader-book {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+    }
+    
+    .reader-spread {
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform-origin: left center;
+      backface-visibility: hidden;
+    }
+    
+    .reader-book.turn-forward .reader-spread.is-active {
+      animation: pageFlipForward 0.8s ease-out;
+    }
+    
+    .reader-book.turn-back .reader-spread.is-active {
+      animation: pageFlipBack 0.8s ease-out;
+    }
+    
+    @keyframes pageFlipForward {
+      0% { transform: rotateY(0deg); }
+      50% { transform: rotateY(-90deg); }
+      100% { transform: rotateY(-180deg); }
+    }
+    
+    @keyframes pageFlipBack {
+      0% { transform: rotateY(-180deg); }
+      50% { transform: rotateY(-90deg); }
+      100% { transform: rotateY(0deg); }
+    }
+    
+    .reader-spread.is-prev {
+      transform: rotateY(-180deg);
+    }
+    
+    .reader-page {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    }
+  `;
+  document.head.appendChild(style);
+};
+
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
   highlightActiveNavLink();
@@ -227,5 +506,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   initMobileNav();
   initReviewForm();
   initCarousels();
+  initFlipbooks();
+  initSectionNavigation();
+  initFlipbookHeaderVisibility();
+  enhanceFlipbook();
   setThemeChoice(DEFAULT_THEME);
 });
