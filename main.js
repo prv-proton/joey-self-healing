@@ -241,6 +241,8 @@ const initFlipbooks = () => {
       0,
       spreads.findIndex((spread) => spread.classList.contains('is-active'))
     );
+    const mobileSinglePageQuery = window.matchMedia('(max-width: 720px)');
+    let singlePageSide = 0;
     let isTransitioning = false;
     const totalSpreads = spreads.length;
 
@@ -251,7 +253,7 @@ const initFlipbooks = () => {
           return Math.max(max, num);
         }
         return max;
-      }, 0) || totalPages;
+      }, 0) || totalSpreads * 2;
 
     if (totalEl) totalEl.textContent = highestPage;
     if (!book.hasAttribute('tabindex')) {
@@ -267,6 +269,21 @@ const initFlipbooks = () => {
         .filter((num) => num !== null)
         .sort((a, b) => a - b);
 
+    const isSinglePageMode = () => mobileSinglePageQuery.matches;
+
+    const getPagesInSpread = (spread) => Array.from(spread?.querySelectorAll('.reader-page') || []);
+
+    const clampSinglePageSide = () => {
+      const pagesInSpread = getPagesInSpread(spreads[index]);
+      if (!pagesInSpread.length) {
+        singlePageSide = 0;
+        return;
+      }
+      if (singlePageSide >= pagesInSpread.length) {
+        singlePageSide = Math.max(0, pagesInSpread.length - 1);
+      }
+    };
+
     const formatPageLabel = (spread) => {
       const numbers = getPageNumbers(spread);
       if (!numbers.length) return `${index + 1}`;
@@ -275,59 +292,161 @@ const initFlipbooks = () => {
       return first === last ? String(first) : `${first}–${last}`;
     };
 
+    const getCurrentPageNumber = () => {
+      const spread = spreads[index];
+      if (!spread) return 0;
+      const numbers = getPageNumbers(spread);
+      if (!numbers.length) {
+        const base = index * 2 + 1;
+        return isSinglePageMode() ? base + singlePageSide : base + 1;
+      }
+      if (!isSinglePageMode()) {
+        return numbers[numbers.length - 1];
+      }
+      const clampedSide = Math.min(singlePageSide, numbers.length - 1);
+      return numbers[clampedSide];
+    };
+
+    const isAtFirstPage = () => {
+      if (!isSinglePageMode()) {
+        return index === 0;
+      }
+      return getCurrentPageNumber() <= 1;
+    };
+
+    const isAtLastPage = () => {
+      if (!isSinglePageMode()) {
+        return index === totalSpreads - 1;
+      }
+      return getCurrentPageNumber() >= highestPage;
+    };
+
+    const startTransition = () => {
+      if (isTransitioning) return false;
+      isTransitioning = true;
+      setTimeout(() => {
+        isTransitioning = false;
+      }, TRANSITION_DURATION);
+      return true;
+    };
+
+    const setSpreadIndex = (targetIndex) => {
+      const clamped = Math.max(0, Math.min(targetIndex, totalSpreads - 1));
+      if (clamped === index) return false;
+      if (!startTransition()) return false;
+      index = clamped;
+      singlePageSide = 0;
+      updateSpreadState();
+      return true;
+    };
+
+    const goToNextPage = () => {
+      if (!isSinglePageMode()) {
+        setSpreadIndex(index + 1);
+        return;
+      }
+      const pagesInSpread = getPagesInSpread(spreads[index]);
+      const hasNextPageInSpread = singlePageSide + 1 < pagesInSpread.length;
+      if (hasNextPageInSpread) {
+        if (!startTransition()) return;
+        singlePageSide += 1;
+        updateSpreadState();
+        return;
+      }
+      if (index >= totalSpreads - 1) return;
+      if (!startTransition()) return;
+      index += 1;
+      singlePageSide = 0;
+      updateSpreadState();
+    };
+
+    const goToPrevPage = () => {
+      if (!isSinglePageMode()) {
+        setSpreadIndex(index - 1);
+        return;
+      }
+      if (singlePageSide > 0) {
+        if (!startTransition()) return;
+        singlePageSide -= 1;
+        updateSpreadState();
+        return;
+      }
+      if (index <= 0) return;
+      if (!startTransition()) return;
+      index -= 1;
+      const previousPages = getPagesInSpread(spreads[index]);
+      singlePageSide = previousPages.length > 1 ? previousPages.length - 1 : 0;
+      updateSpreadState();
+    };
+
     const updateSpreadState = () => {
+      clampSinglePageSide();
       spreads.forEach((spread, spreadIndex) => {
         const isActive = spreadIndex === index;
         const isPrev = spreadIndex < index;
-        const isNext = spreadIndex === index + 1;
+        const isNext = spreadIndex > index;
         spread.classList.toggle('is-active', isActive);
         spread.classList.toggle('is-prev', isPrev);
         spread.classList.toggle('is-next', isNext);
         spread.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        const pagesInSpread = getPagesInSpread(spread);
+        pagesInSpread.forEach((page, pageIdx) => {
+          const shouldShow = !isSinglePageMode()
+            ? isActive
+            : isActive && pageIdx === singlePageSide;
+          page.hidden = !shouldShow;
+        });
       });
 
       if (currentEl) {
-        currentEl.textContent = formatPageLabel(spreads[index]);
+        currentEl.textContent = isSinglePageMode()
+          ? String(getCurrentPageNumber())
+          : formatPageLabel(spreads[index]);
       }
 
       if (progressEl) {
         const numbers = getPageNumbers(spreads[index]);
-        const pageMarker = numbers.length ? numbers[numbers.length - 1] : index + 1;
+        let pageMarker;
+        if (isSinglePageMode()) {
+          pageMarker = getCurrentPageNumber();
+        } else {
+          pageMarker = numbers.length ? numbers[numbers.length - 1] : index + 1;
+        }
         const percent =
           highestPage > 1 ? ((pageMarker - 1) / (highestPage - 1)) * 100 : 100;
         progressEl.style.width = `${percent}%`;
       }
 
       prevButtons.forEach((btn) => {
-        btn.disabled = index === 0;
+        btn.disabled = isAtFirstPage();
       });
       nextButtons.forEach((btn) => {
-        btn.disabled = index === totalSpreads - 1;
+        btn.disabled = isAtLastPage();
       });
     };
 
-    const turnTo = (targetIndex) => {
-      if (isTransitioning) return;
-      const clamped = Math.max(0, Math.min(targetIndex, totalSpreads - 1));
-      if (clamped === index) return;
-      isTransitioning = true;
-      index = clamped;
+    const handleModeChange = () => {
+      singlePageSide = 0;
+      clampSinglePageSide();
       updateSpreadState();
-      setTimeout(() => {
-        isTransitioning = false;
-      }, TRANSITION_DURATION);
     };
 
-    prevButtons.forEach((btn) => btn.addEventListener('click', () => turnTo(index - 1)));
-    nextButtons.forEach((btn) => btn.addEventListener('click', () => turnTo(index + 1)));
+    if (mobileSinglePageQuery.addEventListener) {
+      mobileSinglePageQuery.addEventListener('change', handleModeChange);
+    } else if (mobileSinglePageQuery.addListener) {
+      mobileSinglePageQuery.addListener(handleModeChange);
+    }
+
+    prevButtons.forEach((btn) => btn.addEventListener('click', goToPrevPage));
+    nextButtons.forEach((btn) => btn.addEventListener('click', goToNextPage));
 
     book.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowLeft') {
         event.preventDefault();
-        turnTo(index - 1);
+        goToPrevPage();
       } else if (event.key === 'ArrowRight') {
         event.preventDefault();
-        turnTo(index + 1);
+        goToNextPage();
       }
     });
 
