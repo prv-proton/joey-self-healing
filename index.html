@@ -92,40 +92,26 @@
     <section id="reviews" class="section">
       <div class="section-inner">
         <div>
-          <div class="eyebrow">Community Voice</div>
-          <h2>Share your story or review</h2>
-          <p>Reviews are sent directly to the admin inbox for moderation before publishing. Add them below and we’ll
-            feature highlights.</p>
-          <form class="card" id="reviewForm" action="https://formspree.io/f/mqarwolk" method="POST">
-            <label>Name<input required name="reviewer" type="text"></label>
-            <label>Email<input required name="email" type="email"></label>
-            <div>
-              <div style="font-weight:600; margin-bottom:6px;">Rating</div>
-              <div class="star-rating" aria-label="Rate from 1 to 5 stars">
-                <input type="radio" id="star5" name="rating" value="5" required>
-                <label for="star5" aria-label="5 stars">★</label>
-                <input type="radio" id="star4" name="rating" value="4">
-                <label for="star4" aria-label="4 stars">★</label>
-                <input type="radio" id="star3" name="rating" value="3">
-                <label for="star3" aria-label="3 stars">★</label>
-                <input type="radio" id="star2" name="rating" value="2">
-                <label for="star2" aria-label="2 stars">★</label>
-                <input type="radio" id="star1" name="rating" value="1">
-                <label for="star1" aria-label="1 star">★</label>
-              </div>
-            </div>
-            <label>Your Review<textarea name="review" rows="3"></textarea></label>
-            <button class="btn btn-primary" type="submit">Send Review</button>
-          </form>
+          <div class="eyebrow">Donation Page</div>
+          <h2>The Wall Of Hearts ❤️🫶🏻❤️</h2>
+          <p>They didn’t just give, they believed. This wall is for every person, family, and organization whose love
+            shows up as resources for UniverCcity’s mission.</p>
+          <p>Want to add your name or dedicate a contribution to someone you love? Reach out through
+            <a href="contact.html">the contact page</a> or include a note with your donation. I’ll make sure your heart
+            shines here.</p>
         </div>
-        <div class="card">
-          <h3 style="margin-top:0;">Recent highlights</h3>
-          <div class="grid-3">
-            <div class="mini-card">
-              <h3>“Review from author.”</h3>
-              <p>“yet to add” – Joey</p>
-            </div>
-          </div>
+        <div class="card donor-wall">
+          <h3 style="margin-top:0;">Recent Hearts</h3>
+          <ul class="donor-list">
+            <li>
+              <a class="donor-org" href="https://www.westridgelanding.com/" target="_blank" rel="noopener">
+                <img class="donor-logo" src="images/westridge-landing-logo.png" alt="Westridge Landing logo">
+                <span class="donor-name">Westridge Landing</span>
+              </a>
+              <span class="donor-amount">$9,900.00</span>
+            </li>
+          </ul>
+          <p class="donor-tagline">They didn’t just give, they believed.</p>
         </div>
       </div>
     </section>
