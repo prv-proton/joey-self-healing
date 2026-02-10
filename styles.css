@@ -1098,6 +1098,22 @@ nav a:hover {
   color: #475569;
 }
 
+@media (max-width: 600px) {
+  .donor-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .donor-amount {
+    font-size: 18px;
+  }
+
+  .donor-logo {
+    width: 150px;
+  }
+}
+
 .bullet-list {
   list-style: none;
   padding: 0;
