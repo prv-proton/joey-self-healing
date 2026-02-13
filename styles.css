@@ -234,14 +234,14 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  height: 76px;
-  min-width: 200px;
+  height: 90px;
+  min-width: 240px;
   color: #fff;
 }
 
 .brand-logo {
-  width: 180px;
-  height: 60px;
+  width: 220px;
+  height: 120px;
   border-radius: 14px;
   overflow: hidden;
   display: inline-flex;
@@ -666,6 +666,16 @@ nav a:hover {
   height: 100%;
 }
 
+.program-page .journey-carousel .card img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.program-page .journey-carousel img[src*="cyber-truck"] {
+  object-position: right center;
+}
+
 .carousel-control {
   position: absolute;
   top: 50%;
@@ -1029,6 +1039,22 @@ nav a:hover {
   color: #1f2937;
 }
 
+.coming-soon-banner {
+  margin-top: 18px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px dashed rgba(148, 163, 184, 0.8);
+  background: rgba(248, 250, 252, 0.95);
+  color: #0f172a;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.coming-soon-banner strong {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
 .mini-card p {
   margin: 0;
   color: #6b7280;
@@ -1228,7 +1254,7 @@ footer {
 .footer-main {
   background: linear-gradient(135deg, var(--footer-gradient-start), var(--footer-gradient-end));
   color: #fff;
-  padding: 26px 22px 36px;
+  padding: 5px 22px 5px;
   display: flex;
   flex-wrap: wrap;
   gap: 28px;
@@ -1258,6 +1284,7 @@ footer {
   display: flex;
   gap: 10px;
   min-width: 180px;
+  padding-top: 26px;
 }
 
 .footer-nav {
@@ -1265,6 +1292,7 @@ footer {
   align-items: center;
   gap: 18px;
   flex-wrap: wrap;
+  padding-top: 26px;
 }
 
 .footer-contact {

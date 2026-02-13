@@ -53,6 +53,8 @@ const highlightActiveNavLink = () => {
 
 const REVIEWS_HASH = '#reviews';
 const DEFAULT_SCROLL_OFFSET = 200;
+const DEFAULT_COMING_SOON_MESSAGE =
+  'Thanks for your interest! This feature is coming soon in the public release.';
 
 const scrollWithOffset = (selector, behavior = 'smooth') => {
   const target = document.querySelector(selector);
@@ -548,6 +550,20 @@ const initFlipbookHeaderVisibility = () => {
   window.addEventListener('resize', handleVisibility);
 };
 
+const initComingSoonLinks = () => {
+  const elements = document.querySelectorAll('[data-coming-soon]');
+  if (!elements.length) return;
+
+  elements.forEach((el) => {
+    const message = el.dataset.comingSoon?.trim() || DEFAULT_COMING_SOON_MESSAGE;
+    el.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      alert(message);
+    });
+  });
+};
+
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
   highlightActiveNavLink();
@@ -558,5 +574,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   initFlipbooks();
   initSectionNavigation();
   initFlipbookHeaderVisibility();
+  initComingSoonLinks();
   setThemeChoice(DEFAULT_THEME);
 });
