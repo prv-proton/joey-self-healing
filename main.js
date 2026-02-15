@@ -244,6 +244,7 @@ const initFlipbooks = () => {
       spreads.findIndex((spread) => spread.classList.contains('is-active'))
     );
     const mobileSinglePageQuery = window.matchMedia('(max-width: 720px)');
+    const forceSinglePageMode = root?.dataset.flipSinglePage === 'true';
     let singlePageSide = 0;
     let isTransitioning = false;
     const totalSpreads = spreads.length;
@@ -271,7 +272,7 @@ const initFlipbooks = () => {
         .filter((num) => num !== null)
         .sort((a, b) => a - b);
 
-    const isSinglePageMode = () => mobileSinglePageQuery.matches;
+    const isSinglePageMode = () => forceSinglePageMode || mobileSinglePageQuery.matches;
 
     const getPagesInSpread = (spread) => Array.from(spread?.querySelectorAll('.reader-page') || []);
 
@@ -433,10 +434,12 @@ const initFlipbooks = () => {
       updateSpreadState();
     };
 
-    if (mobileSinglePageQuery.addEventListener) {
-      mobileSinglePageQuery.addEventListener('change', handleModeChange);
-    } else if (mobileSinglePageQuery.addListener) {
-      mobileSinglePageQuery.addListener(handleModeChange);
+    if (!forceSinglePageMode) {
+      if (mobileSinglePageQuery.addEventListener) {
+        mobileSinglePageQuery.addEventListener('change', handleModeChange);
+      } else if (mobileSinglePageQuery.addListener) {
+        mobileSinglePageQuery.addListener(handleModeChange);
+      }
     }
 
     prevButtons.forEach((btn) => btn.addEventListener('click', goToPrevPage));

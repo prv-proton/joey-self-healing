@@ -1457,12 +1457,13 @@ footer {
   border: 1px solid rgba(15, 23, 42, 0.08);
   box-shadow: 0 40px 90px rgba(15, 23, 42, 0.16);
   overflow: visible;
+  min-height: 760px;
 }
 
 .reader-book {
   position: relative;
-  width: min(100%, 920px);
-  height: 540px;
+  width: min(100%, 1024px);
+  height: 910px;
   margin: 0 auto;
   transform: scale(var(--reader-scale, 1));
   transform-origin: center center;
@@ -1496,6 +1497,30 @@ footer {
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.25), transparent);
   transform: translateX(-2px);
   opacity: 0.35;
+}
+
+.flipbook-layout[data-flip-single-page="true"] .reader-book {
+  width: min(100%, 760px);
+}
+
+.flipbook-layout[data-flip-single-page="true"] .reader-spread {
+  grid-template-columns: 1fr;
+}
+
+.flipbook-layout[data-flip-single-page="true"] .reader-spread::after {
+  display: none;
+}
+
+.flipbook-layout[data-flip-single-page="true"] .reader-page {
+  border-right: none;
+  box-shadow: inset 0 0 0 rgba(15, 23, 42, 0.04);
+  font-size: 0.82rem;
+}
+
+.flipbook-layout[data-flip-single-page="true"] .reader-page.page-left,
+.flipbook-layout[data-flip-single-page="true"] .reader-page.page-right {
+  border: none;
+  box-shadow: none;
 }
 
 .reader-spread.is-active {
