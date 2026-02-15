@@ -1515,6 +1515,8 @@ footer {
   border-right: none;
   box-shadow: inset 0 0 0 rgba(15, 23, 42, 0.04);
   font-size: 0.82rem;
+  overflow: visible;
+  max-height: none;
 }
 
 .flipbook-layout[data-flip-single-page="true"] .reader-page.page-left,
@@ -1694,6 +1696,11 @@ footer {
 
   .reader-stage {
     padding: 22px;
+  }
+
+  .flipbook-layout[data-flip-single-page="true"] .reader-stage {
+    min-height: auto;
+    align-items: stretch;
   }
 
   .reader-book {
