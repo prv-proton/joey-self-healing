@@ -1363,7 +1363,7 @@ footer {
 }
 
 .flipbook-section .section-inner {
-  max-width: 1300px;
+  max-width: 1500px;
   display: block;
 }
 
@@ -1372,7 +1372,7 @@ footer {
   flex-direction: column;
   gap: 32px;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
@@ -1462,8 +1462,8 @@ footer {
 
 .reader-book {
   position: relative;
-  width: min(100%, 1024px);
-  height: 910px;
+  width: min(100%, 1300px);
+  height: 780px;
   margin: 0 auto;
   transform: scale(var(--reader-scale, 1));
   transform-origin: center center;
@@ -1617,7 +1617,8 @@ footer {
 .page-arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -1636,16 +1637,16 @@ footer {
 }
 
 .page-arrow:hover {
-  transform: translateY(-50%) scale(1.05);
+  transform: translate(-50%, -50%) scale(1.05);
   background: rgba(99, 102, 241, 0.9);
 }
 
 .page-arrow.prev {
-  left: 18px;
+  margin-left: -140px;
 }
 
 .page-arrow.next {
-  right: 18px;
+  margin-left: 140px;
 }
 
 .reader-progress {
@@ -1733,14 +1734,19 @@ footer {
     bottom: 12px;
     transform: none;
     background: rgba(15, 23, 42, 0.85);
+    left: auto;
+    right: auto;
+    margin-left: 0;
   }
 
   .page-arrow.prev {
     left: 16px;
+    margin-left: 0;
   }
 
   .page-arrow.next {
     right: 16px;
+    margin-left: 0;
   }
 }
 
@@ -1916,14 +1922,19 @@ footer {
     bottom: 12px;
     transform: none;
     background: rgba(15, 23, 42, 0.85);
+    left: auto;
+    right: auto;
+    margin-left: 0;
   }
 
   .page-arrow.prev {
     left: 16px;
+    margin-left: 0;
   }
 
   .page-arrow.next {
     right: 16px;
+    margin-left: 0;
   }
 }
 .reader-shell {
@@ -1992,7 +2003,8 @@ footer {
 .page-arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -2008,15 +2020,17 @@ footer {
 
 .page-arrow:hover {
   background: var(--primary);
-  transform: translateY(-50%) scale(1.1);
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .page-arrow.prev {
-  left: -25px;
+  margin-left: -680px;
+  right: auto;
 }
 
 .page-arrow.next {
-  right: -25px;
+  margin-left: 680px;
+  right: auto;
 }
 
 .reader-progress {
