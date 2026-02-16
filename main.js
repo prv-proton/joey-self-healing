@@ -51,6 +51,19 @@ const highlightActiveNavLink = () => {
   });
 };
 
+const FOOTER_DEFAULT_EMAIL = 'UniverCcity151@mail.com';
+const FOOTER_BOOK_EMAIL = 'Thewealthyloser@mail.com';
+const BOOK_PAGE_FILENAME = 'book.html';
+
+const updateFooterEmail = () => {
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const email = currentPath === BOOK_PAGE_FILENAME ? FOOTER_BOOK_EMAIL : FOOTER_DEFAULT_EMAIL;
+  const footerEmailLink = document.querySelector('.footer-contact a[href^="mailto:"]');
+  if (!footerEmailLink) return;
+  footerEmailLink.textContent = email;
+  footerEmailLink.setAttribute('href', `mailto:${email}`);
+};
+
 const REVIEWS_HASH = '#reviews';
 const DEFAULT_SCROLL_OFFSET = 200;
 const DEFAULT_COMING_SOON_MESSAGE =
@@ -570,6 +583,7 @@ const initComingSoonLinks = () => {
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
   highlightActiveNavLink();
+  updateFooterEmail();
   initReviewAnchors();
   initMobileNav();
   initReviewForm();
