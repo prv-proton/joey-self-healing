@@ -276,6 +276,15 @@ body {
   margin-left: auto;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 12px;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+}
+
 .nav-toggle {
   display: none;
   margin-left: auto;
@@ -923,14 +932,14 @@ nav a:hover {
 .program-page .snap-main {
   height: 100%;
   overflow-y: auto;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: none;
   scroll-padding-top: 120px;
   scroll-behavior: smooth;
 }
 
 .program-page .snap-main>.section {
   min-height: calc(100vh - 120px);
-  scroll-snap-align: start;
+  scroll-snap-align: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -943,7 +952,7 @@ nav a:hover {
 
 .program-page .snap-main>.footer-section {
   min-height: auto;
-  scroll-snap-align: start;
+  scroll-snap-align: none;
   display: block;
   justify-content: flex-start;
 }
@@ -2049,6 +2058,29 @@ footer {
 .page-arrow.next {
   margin-left: 680px;
   right: auto;
+}
+
+@media (max-width: 600px) {
+  .program-page .page-arrow {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    transform: translateY(-50%);
+  }
+
+  .program-page .page-arrow.prev {
+    left: 16px;
+    margin-left: 0;
+  }
+
+  .program-page .page-arrow.next {
+    right: 16px;
+    margin-left: 0;
+  }
 }
 
 .reader-progress {
