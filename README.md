@@ -10,17 +10,17 @@ This repository contains the marketing site for the UniverCcity healing initiati
 
 ## Important documentation & file map
 - `index.html` – landing page hero, vision section, donor wall, and CTA buttons. Update this for any major messaging changes.
-- `book.html` – dedicated sales/summary page for *The Wealthy Loser*; contains direct purchase buttons and redirects.
-- `program.html` – outlines the UniverCcity program pillars and the $20B “Twin Towers of Recovery” plan.
-- `payments.html` – hubs all donation/payment options (Stripe, PayPal, Interac). Flags coming-soon links with `data-coming-soon`.
-- `contact.html` – simple form/contact instructions for outreach or dedication notes.
+- `book/index.html` – dedicated sales/summary page for *The Wealthy Loser*; contains direct purchase buttons and redirects.
+- `program/index.html` – outlines the UniverCcity program pillars and the $20B “Twin Towers of Recovery” plan.
+- `payments/index.html` – hubs all donation/payment options (Stripe, PayPal, Interac). Flags coming-soon links with `data-coming-soon`.
+- `contact/index.html` – simple form/contact instructions for outreach or dedication notes.
 - `partials/header.html` & `partials/footer.html` – shared navigation and footer injected via `main.js`.
 - `styles.css` – global typography, layout utilities, hero + donor wall styling, responsive tweaks.
 - `main.js` – minimal script that loads partials dynamically and applies `[data-coming-soon]` tooltips.
 - `images/` – favicon, hero art, and partner logos. Keep optimized PNG/SVG assets here.
 
 ## Editing guidance
-- **Hero / CTA copy**: adjust the `<section class="hero-wireframe">` in `index.html`. Buttons route to `program.html` and `payments.html`.
+- **Hero / CTA copy**: adjust the `<section class="hero-wireframe">` in `index.html`. Buttons route to `program/index.html` and `payments/index.html`.
 - **Vision narrative & donor wall**: both live in `index.html`. Each donor entry is a `<li>` with `.donor-org` link + amount—duplicate the markup to add names.
 - **Navigation links**: update once inside `partials/header.html`; changes propagate to every page because `main.js` injects the partials.
 - **Payment notices**: update the tooltip text by editing the `data-coming-soon` attribute on each anchor (shown on hover).

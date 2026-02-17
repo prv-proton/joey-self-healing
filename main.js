@@ -41,13 +41,51 @@ const loadPartials = async () => {
   );
 };
 
+const normalizePathname = (value) => {
+  if (!value) return '/';
+  let path = value;
+  if (typeof path === 'string' && !path.startsWith('/')) {
+    try {
+      path = new URL(path, window.location.origin).pathname;
+    } catch (error) {
+      path = `/${path}`;
+    }
+  }
+  const hashIndex = path.indexOf('#');
+  if (hashIndex >= 0) {
+    path = path.slice(0, hashIndex);
+  }
+  const queryIndex = path.indexOf('?');
+  if (queryIndex >= 0) {
+    path = path.slice(0, queryIndex);
+  }
+  path = path.replace(/index\.html$/i, '');
+  if (!path.startsWith('/')) {
+    path = `/${path}`;
+  }
+  path = path.replace(/\/+/g, '/');
+  path = path.replace(/\/$/, '');
+  if (!path) {
+    path = '/';
+  }
+  if (path !== '/' && !path.endsWith('/')) {
+    path = `${path}/`;
+  }
+  return path;
+};
+
 const highlightActiveNavLink = () => {
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPath = normalizePathname(window.location.pathname);
   document.querySelectorAll('.nav-links a').forEach((link) => {
     const href = link.getAttribute('href');
     if (!href) return;
-    const normalizedHref = href.split('#')[0] || 'index.html';
-    const isActive = normalizedHref === currentPath;
+    let linkPath = '/';
+    try {
+      linkPath = normalizePathname(new URL(href, window.location.origin).pathname);
+    } catch (error) {
+      linkPath = normalizePathname(href);
+    }
+    const isActive = linkPath === currentPath;
     link.classList.toggle('active', isActive);
     if (isActive) {
       link.setAttribute('aria-current', 'page');
@@ -59,11 +97,11 @@ const highlightActiveNavLink = () => {
 
 const FOOTER_DEFAULT_EMAIL = 'UniverCcity151@mail.com';
 const FOOTER_BOOK_EMAIL = 'Thewealthyloser@mail.com';
-const BOOK_PAGE_FILENAME = 'book.html';
+const BOOK_PAGE_PATH = '/book/';
 
 const updateFooterEmail = () => {
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-  const email = currentPath === BOOK_PAGE_FILENAME ? FOOTER_BOOK_EMAIL : FOOTER_DEFAULT_EMAIL;
+  const currentPath = normalizePathname(window.location.pathname);
+  const email = currentPath === BOOK_PAGE_PATH ? FOOTER_BOOK_EMAIL : FOOTER_DEFAULT_EMAIL;
   const footerEmailLink = document.querySelector('.footer-contact a[href^="mailto:"]');
   if (!footerEmailLink) return;
   footerEmailLink.textContent = email;
@@ -88,9 +126,13 @@ const scrollWithOffset = (selector, behavior = 'smooth') => {
 const isSameDocumentLink = (href) => {
   if (!href) return false;
   if (href.startsWith('#')) return true;
-  const [path] = href.split('#');
-  const current = window.location.pathname.split('/').pop() || 'index.html';
-  return path === '' || path === current;
+  try {
+    const linkPath = normalizePathname(new URL(href, window.location.origin).pathname);
+    const currentPath = normalizePathname(window.location.pathname);
+    return linkPath === currentPath;
+  } catch (error) {
+    return false;
+  }
 };
 
 const initReviewAnchors = () => {
