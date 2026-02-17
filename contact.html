@@ -7,11 +7,23 @@
   <title>UniverCcity | Contact</title>
   <meta name="description"
     content="Reach the UniverCcity admin team for book orders, donations, or program support." />
+  <meta name="robots" content="index,follow" />
   <meta property="og:title" content="UniverCcity | Contact" />
   <meta property="og:description"
     content="Send a note to the UniverCcity team or subscribe for updates and hotline support." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://example.com/contact" />
+  <meta property="og:site_name" content="UniverCcity" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://example.com/images/logo.png" />
+  <meta property="og:image:alt" content="UniverCcity heart logo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="UniverCcity | Contact" />
+  <meta name="twitter:description"
+    content="Reach the UniverCcity admin team for book orders, donations, or program support." />
+  <meta name="twitter:image" content="https://example.com/images/logo.png" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="canonical" href="https://example.com/contact" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -19,11 +31,36 @@
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="images/fav-icon-32x32.png" sizes="32x32">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "UniverCcity",
+        "url": "https://example.com/",
+        "logo": "https://example.com/images/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "thewealthyloser@mail.com",
+          "areaServed": "CA"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "name": "UniverCcity | Contact",
+        "description": "Reach the UniverCcity admin team for book orders, donations, or program support.",
+        "url": "https://example.com/contact"
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
   <div data-include="partials/header.html"></div>
-  <main id="top">
+  <main id="main-content" role="main" tabindex="-1">
     <section id="contact" class="section">
       <div class="section-inner">
         <div>

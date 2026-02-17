@@ -47,7 +47,13 @@ const highlightActiveNavLink = () => {
     const href = link.getAttribute('href');
     if (!href) return;
     const normalizedHref = href.split('#')[0] || 'index.html';
-    link.classList.toggle('active', normalizedHref === currentPath);
+    const isActive = normalizedHref === currentPath;
+    link.classList.toggle('active', isActive);
+    if (isActive) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
   });
 };
 

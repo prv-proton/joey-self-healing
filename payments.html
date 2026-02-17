@@ -7,11 +7,23 @@
   <title>UniverCcity | Payments & Donations</title>
   <meta name="description"
     content="Choose Stripe, PayPal, or Interac for UniverCcity purchases and donations with simple instructions." />
+  <meta name="robots" content="index,follow" />
   <meta property="og:title" content="UniverCcity | Payments" />
   <meta property="og:description"
     content="Secure payment methods for The Wealthy Loser book, program, and donations across Canada." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://example.com/payments" />
+  <meta property="og:site_name" content="UniverCcity" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://example.com/images/logo.png" />
+  <meta property="og:image:alt" content="UniverCcity heart logo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="UniverCcity | Payments & Donations" />
+  <meta name="twitter:description"
+    content="Choose Stripe, PayPal, or Interac for UniverCcity purchases and donations with simple instructions." />
+  <meta name="twitter:image" content="https://example.com/images/logo.png" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="canonical" href="https://example.com/payments" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -22,20 +34,43 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "UniverCcity Payments",
-    "description": "Payment and donation options for UniverCcity supporters.",
-    "provider": {
-      "@type": "Organization",
-      "name": "UniverCcity"
-    }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "UniverCcity",
+        "url": "https://example.com/",
+        "logo": "https://example.com/images/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "thewealthyloser@mail.com",
+          "areaServed": "CA"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "name": "UniverCcity | Payments & Donations",
+        "description": "Choose Stripe, PayPal, or Interac for UniverCcity purchases and donations with simple instructions.",
+        "url": "https://example.com/payments"
+      },
+      {
+        "@type": "Service",
+        "name": "UniverCcity Payment Options",
+        "description": "Payment and donation options for UniverCcity supporters.",
+        "provider": {
+          "@type": "Organization",
+          "name": "UniverCcity",
+          "url": "https://example.com/"
+        }
+      }
+    ]
   }
   </script>
 </head>
 
 <body>
   <div data-include="partials/header.html"></div>
-  <main id="top">
+  <main id="main-content" role="main" tabindex="-1">
     <section id="payments" class="section">
       <div class="section-inner">
         <div>
