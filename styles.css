@@ -188,6 +188,12 @@ body {
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
 }
 
+.emoji-sequence {
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+  font-variant-emoji: emoji;
+  line-height: 1;
+}
+
 .program-page {
   height: 100vh;
   overflow: hidden;
