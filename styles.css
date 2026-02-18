@@ -2239,3 +2239,41 @@ footer {
     /* padding: 20px; */
   }
 }
+
+.floating-message {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  z-index: 2000;
+  max-width: min(360px, calc(100vw - 32px));
+  text-align: left;
+}
+
+.floating-message.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.floating-message[data-type='error'] {
+  background: #b91c1c;
+  box-shadow: 0 15px 35px rgba(185, 28, 28, 0.35);
+}
+
+@media (max-width: 640px) {
+  .floating-message {
+    left: 16px;
+    right: 16px;
+    border-radius: 16px;
+    text-align: center;
+  }
+}

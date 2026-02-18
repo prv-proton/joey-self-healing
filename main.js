@@ -112,6 +112,37 @@ const REVIEWS_HASH = '#reviews';
 const DEFAULT_SCROLL_OFFSET = 200;
 const DEFAULT_COMING_SOON_MESSAGE =
   'Thanks for your interest! This feature is coming soon in the public release.';
+const FLOATING_MESSAGE_HIDE_DELAY = 6000;
+let floatingMessageTimer = null;
+let floatingMessageEl = null;
+
+const getFloatingMessageElement = () => {
+  if (floatingMessageEl && document.body.contains(floatingMessageEl)) {
+    return floatingMessageEl;
+  }
+  floatingMessageEl = document.createElement('div');
+  floatingMessageEl.className = 'floating-message';
+  document.body.appendChild(floatingMessageEl);
+  return floatingMessageEl;
+};
+
+const hideFloatingMessage = () => {
+  if (!floatingMessageEl) return;
+  floatingMessageEl.classList.remove('is-visible');
+};
+
+const showFloatingMessage = (message, type = 'success') => {
+  const el = getFloatingMessageElement();
+  el.textContent = message;
+  el.dataset.type = type;
+  requestAnimationFrame(() => {
+    el.classList.add('is-visible');
+  });
+  clearTimeout(floatingMessageTimer);
+  floatingMessageTimer = window.setTimeout(() => {
+    hideFloatingMessage();
+  }, FLOATING_MESSAGE_HIDE_DELAY);
+};
 
 const scrollWithOffset = (selector, behavior = 'smooth') => {
   const target = document.querySelector(selector);
@@ -628,6 +659,50 @@ const initComingSoonLinks = () => {
   });
 };
 
+const initFloatingForms = () => {
+  const forms = document.querySelectorAll('form[data-floating-submit]');
+  if (!forms.length) return;
+
+  forms.forEach((form) => {
+    if (form.dataset.floatingSubmitInit === 'true') return;
+    form.dataset.floatingSubmitInit = 'true';
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const action = form.getAttribute('action');
+      if (!action) {
+        showFloatingMessage('Form is missing an action URL. Please try again later.', 'error');
+        return;
+      }
+      const method = (form.getAttribute('method') || 'POST').toUpperCase();
+      const submitButton = form.querySelector('[type="submit"]');
+      submitButton?.setAttribute('disabled', 'true');
+      const formData = new FormData(form);
+      try {
+        const response = await fetch(action, {
+          method,
+          body: formData,
+          headers: { Accept: 'application/json' }
+        });
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+        form.reset();
+        const successMessage =
+          form.dataset.successMessage?.trim() || 'Thanks for submitting your request.';
+        showFloatingMessage(successMessage, 'success');
+      } catch (error) {
+        console.error('Async form submission failed', error);
+        showFloatingMessage(
+          'Sorry, we could not send your request. Please try again in a moment.',
+          'error'
+        );
+      } finally {
+        submitButton?.removeAttribute('disabled');
+      }
+    });
+  });
+};
+
 document.addEventListener('DOMContentLoaded', async () => {
   await loadPartials();
   highlightActiveNavLink();
@@ -640,5 +715,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   initSectionNavigation();
   initFlipbookHeaderVisibility();
   initComingSoonLinks();
+  initFloatingForms();
   setThemeChoice(DEFAULT_THEME);
 });
