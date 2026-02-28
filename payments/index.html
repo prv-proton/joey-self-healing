@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UniverCcity | Payments & Donations</title>
+  <title>UniverCcity | Stripe Donations</title>
   <meta name="description"
-    content="Choose Stripe, PayPal, or Interac for UniverCcity purchases and donations with simple instructions." />
+    content="Donate to UniverCcity securely with Stripe Checkout and return to our page with a success confirmation." />
   <meta name="robots" content="index,follow" />
-  <meta property="og:title" content="UniverCcity | Payments" />
+  <meta property="og:title" content="UniverCcity | Stripe Donations" />
   <meta property="og:description"
-    content="Secure payment methods for The Wealthy Loser book, program, and donations across Canada." />
+    content="Secure Stripe donations for UniverCcity with a post-payment return confirmation." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.univerccity151.ca/payments/" />
   <meta property="og:site_name" content="UniverCcity" />
@@ -18,9 +18,9 @@
   <meta property="og:image" content="https://www.univerccity151.ca/images/logo.png" />
   <meta property="og:image:alt" content="UniverCcity heart logo" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="UniverCcity | Payments & Donations" />
+  <meta name="twitter:title" content="UniverCcity | Stripe Donations" />
   <meta name="twitter:description"
-    content="Choose Stripe, PayPal, or Interac for UniverCcity purchases and donations with simple instructions." />
+    content="Donate to UniverCcity securely with Stripe Checkout and return to our page with a success confirmation." />
   <meta name="twitter:image" content="https://www.univerccity151.ca/images/logo.png" />
   <meta name="theme-color" content="#0f172a" />
   <link rel="canonical" href="https://www.univerccity151.ca/payments/" />
@@ -49,14 +49,14 @@
       },
       {
         "@type": "WebPage",
-        "name": "UniverCcity | Payments & Donations",
-        "description": "Choose Stripe, PayPal, or Interac for UniverCcity purchases and donations with simple instructions.",
+        "name": "UniverCcity | Stripe Donations",
+        "description": "Donate to UniverCcity securely with Stripe Checkout and return to our page with a success confirmation.",
         "url": "https://www.univerccity151.ca/payments/"
       },
       {
         "@type": "Service",
-        "name": "UniverCcity Payment Options",
-        "description": "Payment and donation options for UniverCcity supporters.",
+        "name": "UniverCcity Stripe Donations",
+        "description": "Stripe donation checkout for UniverCcity supporters.",
         "provider": {
           "@type": "Organization",
           "name": "UniverCcity",
@@ -75,76 +75,29 @@
       <div class="section-inner">
         <div>
           <div class="eyebrow">Payment in Canada</div>
-          <h1>Secure checkout for donations and purchases</h1>
-          <p>Use Stripe Checkout for cards, Apple Pay, or Google Pay; PayPal for supporters who prefer wallets; and
-            Interac e-Transfer for Canadian banking. Keep donations and book orders in separate payment links so every
-            transaction is easy to reconcile.</p>
-          <div class="coming-soon-banner" role="status">
-            <strong>Pre-release notice</strong>
-            <p>Online donations, payments, and redirects are coming soon. Check back shortly for the full experience.</p>
-          </div>
-          <div class="grid-3" style="margin-top:14px;">
-            <div class="mini-card" style="background:#f9fafb;">
-              <div class="eyebrow" style="color:#111827;">Stripe</div>
-              <h3>Checkout links</h3>
-              <p>Use two hosted payment pages: one for the book, another for the program/donations.</p>
-              <ul class="bullet-list" style="color:#1f2937;">
-                <li><span class="check" style="background:var(--primary);">✓</span>Enable Apple Pay + Google Pay.</li>
-                <li><span class="check" style="background:var(--primary);">✓</span>Add address fields when shipping</li>
-                <li><span class="check" style="background:var(--primary);">✓</span>Receipts branded “UniverCcity”.</li>
-              </ul>
-            </div>
-            <div class="mini-card" style="background:#f9fafb;">
-              <div class="eyebrow" style="color:#111827;">PayPal</div>
-              <h3>Express buttons</h3>
-              <p>Set up a single donation button and a separate goods/services button.</p>
-              <ul class="bullet-list" style="color:#1f2937;">
-                <li><span class="check" style="background:var(--primary);">✓</span>Use a QR code for events.</li>
-                <li><span class="check" style="background:var(--primary);">✓</span>Allow supporters to cover fees.</li>
-                <li><span class="check" style="background:var(--primary);">✓</span>Send automated thank-you emails.</li>
-              </ul>
-            </div>
-            <div class="mini-card" style="background:#f9fafb;">
-              <div class="eyebrow" style="color:#111827;">Interac</div>
-              <h3>Auto-deposit email</h3>
-              <p>Publish the Interac e-Transfer email and instructions.</p>
-              <ul class="bullet-list" style="color:#1f2937;">
-                <li><span class="check" style="background:var(--primary);">✓</span>List security answer policy.</li>
-                <li><span class="check" style="background:var(--primary);">✓</span>Post estimated processing times.</li>
-                <li><span class="check" style="background:var(--primary);">✓</span>Confirm donations via email.</li>
-              </ul>
-            </div>
-          </div>
+          <h1>Secure Stripe donations</h1>
+          <p>All donation redirects now use Stripe Checkout only. Supporters can pay by card and supported wallets
+            through Stripe's hosted checkout flow.</p>
+          <!-- <div class="card" role="status" style="margin-top:14px;">
+            <h3 style="margin-top:0;">Return after successful payment</h3>
+            <p style="margin-bottom:0;">Set your Stripe Payment Link after-completion redirect to
+              <strong>https://www.univerccity151.ca/payments/?donation=success</strong>. Returning supporters will see
+              an on-page success notification automatically.</p>
+          </div> -->
           <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-            <a class="btn btn-primary" href="https://www.univerccity151.ca/stripe-book" target="_blank" rel="noopener"
-              data-coming-soon="Stripe checkout coming soon.">Pay with
-              Stripe</a>
-            <a class="btn btn-ghost" href="https://www.paypal.com/donate" target="_blank" rel="noopener"
-              data-coming-soon="PayPal donations coming soon.">Pay with
-              PayPal</a>
-            <a class="btn btn-ghost" href="mailto:theWealthyLoser@mail.com?subject=Interac%20Payment"
-              rel="noopener" data-coming-soon="Interac instructions coming soon.">Interac Instructions</a>
+            <a class="btn btn-primary" href="https://buy.stripe.com/3cI3cw0cN3UqdM67fSfQI01">Donate with Stripe</a>
           </div>
         </div>
         <div class="card">
-          <h3 style="margin-top:0;">Book retailers</h3>
-          <p style="color:#475569;">Prefer your favorite store? Redirect to trusted partners and keep shoppers in Canada
-            happy.</p>
+          <h3 style="margin-top:0;">Stripe-only donation flow</h3>
+          <p style="color:#475569;">This page now uses Stripe as the only payment method for donations.</p>
           <ul class="bullet-list" style="color:#1f2937;">
-            <li><span class="check" style="background:var(--primary);">✓</span><a
-                href="https://www.amazon.ca/Wealthy-Loser-Caught-Between-Heaven/dp/1039155685?crid=3RHX0JDBRVDGU&dib=eyJ2IjoiMSJ9.-LAW0rqJ2NXh1MQcJcFO2w.3TreqaZA2DAGSPrfCzTV0xv6AHTYjeQtxJtxSoSxHm4&dib_tag=se&keywords=the+wealthy+loser&qid=1765565613&sprefix=the+wealthy+looser%2Caps%2C151&sr=8-1"
-                target="_blank" rel="noopener"
-                data-coming-soon="Retail links coming soon.">Amazon Canada listing</a></li>
-            <li><span class="check" style="background:var(--primary);">✓</span><a
-                href="https://www.indigo.ca/en-ca/the-wealthy-loser-caught-between-heaven-and-hell/9781039155688.html"
-                target="_blank" rel="noopener"
-                data-coming-soon="Retail links coming soon.">Indigo / Chapters listing</a></li>
-            <li><span class="check" style="background:var(--primary);">✓</span><a
-                href="https://www.google.ca/books/edition/The_Wealthy_Loser/cBPIEAAAQBAJ?hl=en&gbpv=1&dq=the+wealthy+looser&pg=PA228&printsec=frontcover"
-                target="_blank" rel="noopener"
-                data-coming-soon="Retail links coming soon.">Google Books preview</a></li>
+            <li><span class="check" style="background:var(--primary);">✓</span>Single hosted Stripe checkout link.</li>
+            <li><span class="check" style="background:var(--primary);">✓</span>Cards and supported wallets via Stripe.</li>
+            <li><span class="check" style="background:var(--primary);">✓</span>Automatic success notice on return to this page.</li>
           </ul>
-          <p style="color:#475569;">Include UTM tags in these outbound links to track referral performance.</p>
+          <p style="color:#475569; margin-bottom:0;">If needed, update your Stripe redirect URL to:
+            <strong>https://www.univerccity151.ca/payments/?donation=success</strong>.</p>
         </div>
       </div>
     </section>

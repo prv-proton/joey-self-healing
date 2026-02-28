@@ -659,6 +659,17 @@ const initComingSoonLinks = () => {
   });
 };
 
+const initDonationReturnNotice = () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('donation') !== 'success') return;
+
+  showFloatingMessage('Thank you. Your Stripe donation was successful.', 'success');
+  params.delete('donation');
+  const query = params.toString();
+  const cleanUrl = `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`;
+  history.replaceState(null, '', cleanUrl);
+};
+
 const initFloatingForms = () => {
   const forms = document.querySelectorAll('form[data-floating-submit]');
   if (!forms.length) return;
@@ -715,6 +726,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initSectionNavigation();
   initFlipbookHeaderVisibility();
   initComingSoonLinks();
+  initDonationReturnNotice();
   initFloatingForms();
   setThemeChoice(DEFAULT_THEME);
 });
